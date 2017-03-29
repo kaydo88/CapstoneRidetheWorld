@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Google Maps Streetview Player</title>
+ <meta name="description" content="Google Maps Streetview Player : Play any set of directions from google maps. View google maps streetview images in sequence creating a video of a route. View route data for driving, biking, or walking. Created videos can be downloaded to use in various projects.">
+ <link rel="icon" href="images/favicon.ico">
+ <link rel="stylesheet" type="text/css" href="css/c.css"/>
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <meta name="google-translate-customization" content="3939594f8eabe68d-f9ee46c3d54711d5-gccd11ff5a5b030f8-1a">
+</head>
+<body>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-4">
+   <div class="jumbotron">
+    <h1 class="page-header">Google Maps <small>Streetview Player</small></h1>
+    <p class="lead">The google maps streetview player will take in either a starting point and end point and 
+              provide a playthrough of the google streetview images that are available.</p>
+   <!-- <div id="google_translate_element"></div><script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.FloatPosition.TOP_LEFT, gaTrack: true, gaId: 'UA-51914371-1'}, 'google_translate_element');
+            }
+            </script><script async type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <div class="row">
+     <div class="col-sm-12" style="text-align:right">
+      <div class="fb-like" data-href="http://www.brianfolts.com/driver/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://brianfolts.com/driver/">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+<a href="https://play.google.com/store/apps/details?id=com.baf.gmsvp&hl=en&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="50" /></a>
+
+   </div>
+  </div>
+  -->
+ </div> 
+          <div class="panel panel-primary">
+      <div class="panel-heading">Options</div>
+            <div class="panel-body">
+              <form id="mainform" class="form-horizontal" onsubmit="initMovie();return false">
+                <div class="form-group">
+                  <label for="origin" class="col-sm-2 control-label">Origin</label>
+                  <div class="col-sm-10">
+                    <input name="origin" class="form-control" onchange="buildLink()" placeholder="origin" type="text" id="origin"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="destination" class="col-sm-2 control-label">Destination</label>
+                  <div class="col-sm-10">
+                    <input name="destination" class="form-control" onchange="buildLink()" placeholder="destination" type="text" id="destination"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input name="advanced" id="advanced" type="checkbox" onclick="toggleAdvanced(this)"> Advanced Options
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div id="advanced-area" class="hidden">
+                  <div class="form-group">
+                    <label for="fps" class="col-sm-2 control-label">FPS</label>
+                    <div class="col-sm-10">
+                      <input name="fps" class="form-control" onchange="buildLink()" placeholder="frames per second" type="text" id="fps" value="1" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="travelmode" class="col-sm-2 control-label">Travel mode</label>
+                    <div class="col-sm-10">
+                      <select name="travelmode" class="form-control" onchange="buildLink()" id="travelmode">
+                        <option value="DRIVING">Driving</option>
+                        <option value="BICYCLING" selected>Bicycling</option>
+                        <option value="TRANSIT">Transit</option>
+                        <option value="WALKING">Walking</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="gxp-file" class="col-sm-2 control-label">Upload coordinates (gxp or kml)</label>
+                    <div class="col-sm-10">
+                      <input type="file" id="gxp-file" class="btn btn-secondary" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="routename" class="col-sm-2 control-label">Route Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="routename" name="rn" onchange="buildLink()" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Play"/>
+                  </div>
+                </div>
+              </form>
+              <!--<a href="rss.xml" target="_blank" class="rss-link">version 1.3.4</a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" style="margin-top:20px">
+          <div id="statusbox" class="alert alert-danger" style="display:none"></div>
+          <div class="panel panel-info" id="stage" style="display:none">
+            <div class="panel-heading">
+              <span style="float:right" id="route-distance"></span>
+              <span id="route-name-label"></span>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div style="width:512px;margin:auto">
+                    <canvas id="draw"></canvas>
+                    <div id="progress" class="progress">
+                      <div class="progress-bar progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="progressbar" style="width:0%"></div>
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bufferbar" style="width:0%"></div>
+                    </div>
+                    <div class="btn-group" id="controls" style="visibility:hidden;height:20px">
+                      <input class="btn btn-sm btn-primary" id="btn_playpause" onclick="pauseMovie(this)" type="button" value="Pause"/>
+                      <input class="btn btn-sm" onclick="speedUpMovie()" type="button" value="Faster"/>
+                      <input class="btn btn-sm" onclick="slowDownMovie()" type="button" value="Slower"/>
+                      <input class="btn btn-sm" type="button" data-toggle="modal" data-target="#downloadModal" value="Download"/>
+                      <input class="btn btn-sm" onclick="shareMovie()" type="button" value="Share" data-toggle="modal" data-target="#shareModal" />
+                      <input class="btn btn-sm" onclick="fullScreen()" type="button" value="Fullscreen" />
+                      <h1>Speed: <span id="val"><%=val%></span></h1>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div id="map"></div>
+                  <div id="directions"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -- >
+      <!-- STREETVIEW_PLAYER -->
+      <div class="row">
+        <div class="col-md-6">
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-1225680890389163"
+               data-ad-slot="9699540536"></ins>
+        </div>
+        <div class="col-md-6">
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-1225680890389163"
+               data-ad-slot="4739460535"></ins>
+        </div>
+      </div>
+
+    </div>
+    <script>
+
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-51914371-1', 'auto', {'allowLinker': true});
+      ga('require', 'linker');
+      ga('send', 'pageview');
+      ga('linker:autoLink', ['brianfolts.com']);
+
+      // Track basic JavaScript errors
+      window.onerror = function (e) {
+        ga('send', {
+          'hitType': 'event',
+          'eventCategory': 'error',
+          'eventAction': e.message,
+          'eventLabel': e.filename + ': ' + e.lineno
+        })
+      };
+      
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=409406982533198&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCv_y6u3bGP5vZEFz3mIkp8pcjJ7waSrnw&sensor=false" type="text/javascript"></script>
+    <script src="js/async.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/j.js"></script>
+    <script type="text/javascript" src="js/gif.js"></script>
+    <script type="text/javascript" src="https://stuk.github.io/jszip-utils/dist/jszip-utils.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+   
+
+
+    <!-- Download Modal -->
+    <div class="modal fade" id="downloadModal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Downloading Route</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-sm-12">
+                <p>Exporting your route as a GIF</p>
+                <p class="help-block">Only as much of the movie which has loaded in the browser will be added to the GIF. Image will appear below when ready. Right click the image to save a copy.</p>
+    <div class="progress">
+      <div class="progress-bar progress-bar" role="progressbar" id="downloadProgress" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+    </div>
+              </div>
+            </div>
+            <div class="row" id="downloadResult">
+            </div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Share Modal -->
+    <div class="modal fade" id="shareModal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Share</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-sm-12">
+                <p>Share your route with the world.</p>
+                <input onclick="this.select()" id="routeURL" class="form-control" value="" />
+                <p class="help-block">Copy and paste the above URL to share</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  </body>
+</html>

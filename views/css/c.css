@@ -1,0 +1,59 @@
+#draw {
+	position:relative;
+	overflow:hidden;
+  width: 512px;
+  height: 512px;
+}
+
+#progress {
+  margin-bottom: 0px;
+}
+
+#progressbar,
+#bufferbar {
+	cursor:pointer
+}
+
+.jumbotron {
+  padding-bottom:0px !important;
+  padding-top: 10px !important;
+}
+
+#map {
+	width: 512px;
+	height: 512px;
+}
+
+.loading{
+	background: #ccc url(../images/load.gif) center center no-repeat !important;
+}
+
+.loading div {
+	display: none;
+}
+
+/* hide the directions from google - HACKY - */
+.adp {
+	display:none;
+}
+
+.rss-link {
+  background: url(../images/rss-icon.png) no-repeat;
+  padding-left: 20px;
+  float: right;
+}
+
+.fb-like {
+  top: -8px;
+  margin-right: 10px;
+}
+
+#twitter-widget-0 {
+  position:relative;
+  top: -3px;
+}
+
+.netlog {
+  position:relative;
+  top:-9px;
+}
