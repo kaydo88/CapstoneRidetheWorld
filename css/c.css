@@ -1,8 +1,8 @@
 #draw {
 	position:relative;
 	overflow:hidden;
-  width: 512px;
-  height: 512px;
+  width: 1700px;
+  height: 752px;
 }
 
 #progress {
@@ -14,14 +14,35 @@
 	cursor:pointer
 }
 
-.jumbotron {
-  padding-bottom:0px !important;
-  padding-top: 10px !important;
+.panel-panel-primary
+{
+  position:relative;
+  width: 500px;
 }
 
+.jumbotron {
+  padding-bottom:0px !important;
+  padding-top: 10px !important;  
+  width: 500px;
+
+}
+
+.col-md-8
+{
+  margin-top:20px;
+  padding-left: 0px !important;
+
+}
+
+/*move location of the maps */
 #map {
-	width: 512px;
-	height: 512px;
+	width: 312px;
+	height: 412px;
+  position: relative;
+  left:-1800px;
+  top:80px;
+  
+
 }
 
 .loading{

@@ -5,6 +5,8 @@ var imgDataArray = [];
 var speed = 0;
 var res;
 var firstTime = true;
+var start = false;
+var stopMovie = false;
 
 
 function parseQueryString(sQueryString) {
@@ -55,6 +57,7 @@ $(function() {
 });
 
 function pauseMovie(btn) {
+    //set the movie to pause
     if (streetviewPlayer.getPaused() === false) {
         streetviewPlayer.setPaused(true);
         btn.value = "Play"
@@ -80,55 +83,7 @@ function getApointsFromKML(xml) {
     return result
 }
 
-function importGXP(elFile) {
-    try {
-        var oReader = new FileReader;
-        oReader.onload = function() {
-            var sXml = oReader.result;
-            if (window.DOMParser) {
-                xmlDoc = (new DOMParser).parseFromString(sXml, "text/xml")
-            } else {
-                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-                xmlDoc.async = false;
-                xmlDoc.loadXML(sXml)
-            }
-            var aPoints = xmlDoc.getElementsByTagName("trkpt");
-            if (aPoints.length === 0) {
-                aPoints = xmlDoc.getElementsByTagNameNS("http://www.garmin.com/xmlschemas/GpxExtensions/v3", "rpt")
-            }
-            if (aPoints.length === 0) {
-                aPoints = xmlDoc.getElementsByTagName("rtept")
-            }
-            if (aPoints.length === 0) {
-                aPoints = xmlDoc.getElementsByTagName("wpt")
-            }
-            if (aPoints.length === 0) {
-                aPoints = getApointsFromKML(xmlDoc)
-            }
-            var aLatLng = [];
-            for (var i = 0, length = aPoints.length; i < length; i++) {
-                aLatLng.push(new google.maps.LatLng(aPoints[i].getAttribute("lat") * 1, aPoints[i].getAttribute("lon")))
-            }
-            if (aLatLng.length === 0) {
-                setStatus("No waypoints found in provided file.")
-            } else {
-                if (document.getElementById("routename").value !== "") {
-                    document.getElementById("route-name-label").innerHTML = document.getElementById("routename").value
-                } else {
-                    document.getElementById("route-name-label").innerHTML = elFile.value
-                }
-                playRoute({
-                    route: {
-                        overview_path: aLatLng
-                    }
-                })
-            }
-        };
-        oReader.readAsText(elFile.files[0])
-    } catch (e) {
-        setStatus("Error uploading file, please try a new file or a new browser.")
-    }
-}
+
 
 function setStatus(msg) {
     document.getElementById("statusbox").style.display = "block";
@@ -169,7 +124,9 @@ function logFramesPerRoute() {
 }
 
 function playRoute(oRoute) {
+
     if (streetviewPlayer !== null) {
+        console.log("playing route");
         streetviewPlayer.dispose()
     }
 
@@ -179,30 +136,75 @@ function playRoute(oRoute) {
 function loadlink(){
   //console.log("hi");
      $.get('/ajax', function(res) {
-    $('#val').text(res);
+    $('#val').text(res + "mph");
     res = parseInt(res);
     console.log("res:", res, "  speed: ", speed);
     
-    if(res > speed)
+   
+    if(res > speed )
     {
+        //start = true;
+       
         firstTime = false;
+       // streetviewPlayer.setPaused(false);
+
+        //streetviewPlayer.setPaused(false);
+
         console.log("SPPEEEEED UP");
         speedUpMovie();
         speed = res;
     }
 
+
+
     if(res < speed)
     {
         console.log("sllllowww");
+       //  streetviewPlayer.setPaused(false);
         slowDownMovie();
+        
         speed = res;
+        
     }
+
+   /* if(!isNaN(res))
+    {
+        console.log("starting up again");
+        streetviewPlayer.setPaused(false);
+    }
+    */
 
     if(isNaN(res) && firstTime == false)
     {
         console.log("PAUSE");
         streetviewPlayer.setPaused(true);
+        stopMovie = true;
+
+       //firstTime == true;
     }
+
+   
+    /* if(!isNaN(res))
+    {
+        console.log("PAUSE");
+        
+
+       // firstTime == true;
+    }*/
+
+   
+
+/*
+    if(!isNaN(res) && firstTime == true)
+    {
+        console.log("starting again");
+        streetviewPlayer.setPaused(false);
+        speedUpMovie();
+        speed = res;
+    }
+    */
+
+    
     
 
     
@@ -212,7 +214,7 @@ function loadlink(){
 
 loadlink(); // This will run on page load
 setInterval(function(){
-    loadlink() // this will run after every 5 seconds
+    loadlink() 
 }, 10);
 
    
@@ -279,7 +281,9 @@ function initMovie() {
 
 function speedUpMovie() {
     console.log("speeding up");
-    var currentSpeed = streetviewPlayer.getFPS() + 1;
+   // streetviewPlayer.setPaused(false);
+
+    var currentSpeed = streetviewPlayer.getFPS() + .5;
     /*if( currentSpeed  > 4)
     {
         slowDownMovie();
@@ -287,7 +291,7 @@ function speedUpMovie() {
     */
     if(currentSpeed > 7)
     {
-        currentSpeed = 7;
+        currentSpeed = 6;
     }
     
     console.log("current speed", currentSpeed);
@@ -297,6 +301,7 @@ function speedUpMovie() {
 
 function slowDownMovie() {
     console.log("slowing down");
+   // streetviewPlayer.setPaused(false);
     var currentSpeed = streetviewPlayer.getFPS() - 3;
     
     if(currentSpeed < 1)
@@ -510,6 +515,7 @@ google.maps.StreetViewPlayer = function(config) {
                 visible: true
             })
         }
+        //!!! Set the route to pause initially
         self.setPaused(false)
     }
     var Frame = function(vertex, nextVertex) {
@@ -681,9 +687,9 @@ google.maps.StreetViewPlayer = function(config) {
 
     function drawFrame(frame) {
 
-
         
-        var iSize = 512;
+        
+            var iSize = 512;
         if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
             iSize = Math.min(screen.availWidth, screen.availHeight);
             if (iSize === screen.availHeight) {
@@ -705,6 +711,9 @@ google.maps.StreetViewPlayer = function(config) {
         }
         console.log("drawing to Canvas", speed);
 
+    
+        
+        
         
         /*if(speed >= 50)
 

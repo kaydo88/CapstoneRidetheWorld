@@ -7,7 +7,7 @@ var app = express();
  var body = 'default';
 var portHTTP = 3050;
 var portListen = 1059; 
-var siteIP = "172.21.193.142";
+var siteIP = "172.20.10.4";
 'use strict';
 
 var os = require('os');

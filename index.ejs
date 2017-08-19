@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="js/async.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <!-- <script type="text/javascript" src="js/j.js"></script> -->
+    <!--<script type="text/javascript" src="js/gif.js"></script> -- >
+    <script src="js/bootstrap.min.js"></script>
+<script>
+$(document).ready(
+            function() {
+                setInterval(function() {
+                     $.get('/ajax', function(res) {
+                  $('#val').text(res);
+                  //setTimeout(worker,2);
+              });
+                }, 100);
+             
+    });
+
+var streetviewPlayer = null;
+var globalNum = 0;
+var imgArray = [];
+var imgDataArray = [];
+
+
+function parseQueryString(sQueryString) {
+    var match, pl = /\+/g,
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function(s) {
+            return decodeURIComponent(s.replace(pl, " "))
+        },
+        query = sQueryString;
+    urlParams = {};
+    while (match = search.exec(query)) urlParams[decode(match[1])] = decode(match[2]);
+    return urlParams
+}
+$(function() {
+    ga("set", "metric1", "FramesPerRoute");
+    $("#progress").mousedown(function(e) {
+        if (e.target === $("#progressbar")[0] || e.target === $("#bufferbar")[0]) {
+            var jProgress = $("#progress");
+            var iFrame = Math.floor(streetviewPlayer.getTotalVertices() * ((e.pageX - jProgress.offset().left) / jProgress.width()));
+            streetviewPlayer.setProgress(iFrame)
+        }
+    });
+    var sQuery = window.location.hash || window.location.search;
+    if (sQuery && sQuery.length) {
+        var oHashData = parseQueryString(sQuery.substring(1));
+        if (typeof oHashData.origin !== "undefined") {
+            document.getElementById("origin").value = oHashData.origin
+        }
+        if (typeof oHashData.destination !== "undefined") {
+            document.getElementById("destination").value = oHashData.destination
+        }
+        if (typeof oHashData.advanced !== "undefined") {
+            document.getElementById("advanced").checked = true;
+            showAdvanced()
+        }
+        if (typeof oHashData.fps !== "undefined") {
+            document.getElementById("fps").value = oHashData.fps
+        }
+        if (typeof oHashData.travelmode !== "undefined") {
+            $("#travelmode").val(oHashData.travelmode)
+        }
+        if (typeof oHashData.rn !== "undefined") {
+            document.getElementById("routename").value = oHashData.rn
+        }
+        initMovie()
+    }
+});
+
+function pauseMovie(btn) {
+    if (streetviewPlayer.getPaused() === false) {
+        streetviewPlayer.setPaused(true);
+        btn.value = "Play"
+    } else {
+        streetviewPlayer.setPaused(false);
+        btn.value = "Pause"
+    }
+}
+
+function getApointsFromKML(xml) {
+    var coordinates = xml.getElementsByTagName("coordinates");
+    var result = [];
+    if (coordinates.length) {
+        var points = coordinates[0].firstChild.nodeValue.trim();
+        var latLngs = points.split("0 ");
+        for (var i = 0, length = latLngs.length; i < length; i++) {
+            var xmlNode = xml.createElement("latLng");
+            xmlNode.setAttribute("lon", latLngs[i].split(",")[0]);
+            xmlNode.setAttribute("lat", latLngs[i].split(",")[1]);
+            result.push(xmlNode)
+        }
+    }
+    return result
+}
+
+function importGXP(elFile) {
+    try {
+        var oReader = new FileReader;
+        oReader.onload = function() {
+            var sXml = oReader.result;
+            if (window.DOMParser) {
+                xmlDoc = (new DOMParser).parseFromString(sXml, "text/xml")
+            } else {
+                xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+                xmlDoc.async = false;
+                xmlDoc.loadXML(sXml)
+            }
+            var aPoints = xmlDoc.getElementsByTagName("trkpt");
+            if (aPoints.length === 0) {
+                aPoints = xmlDoc.getElementsByTagNameNS("http://www.garmin.com/xmlschemas/GpxExtensions/v3", "rpt")
+            }
+            if (aPoints.length === 0) {
+                aPoints = xmlDoc.getElementsByTagName("rtept")
+            }
+            if (aPoints.length === 0) {
+                aPoints = xmlDoc.getElementsByTagName("wpt")
+            }
+            if (aPoints.length === 0) {
+                aPoints = getApointsFromKML(xmlDoc)
+            }
+            var aLatLng = [];
+            for (var i = 0, length = aPoints.length; i < length; i++) {
+                aLatLng.push(new google.maps.LatLng(aPoints[i].getAttribute("lat") * 1, aPoints[i].getAttribute("lon")))
+            }
+            if (aLatLng.length === 0) {
+                setStatus("No waypoints found in provided file.")
+            } else {
+                if (document.getElementById("routename").value !== "") {
+                    document.getElementById("route-name-label").innerHTML = document.getElementById("routename").value
+                } else {
+                    document.getElementById("route-name-label").innerHTML = elFile.value
+                }
+                playRoute({
+                    route: {
+                        overview_path: aLatLng
+                    }
+                })
+            }
+        };
+        oReader.readAsText(elFile.files[0])
+    } catch (e) {
+        setStatus("Error uploading file, please try a new file or a new browser.")
+    }
+}
+
+function setStatus(msg) {
+    document.getElementById("statusbox").style.display = "block";
+    document.getElementById("statusbox").innerHTML = msg;
+    document.getElementById("stage").style.display = "none";
+    $(document.body).scrollTop(0)
+}
+
+function clearStatus() {
+    document.getElementById("statusbox").style.display = "none"
+}
+
+function getTravelMode() {
+    return google.maps.TravelMode[$("#travelmode").val()]
+}
+
+function fullScreen() {
+    var elem = document.getElementById("draw");
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen()
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen()
+    } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen()
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen()
+    }
+}
+
+function downloadZip(){
+    // var imgData = "R0lGODdhBQAFAIACAAAAAP/eACwAAAAABQAFAAACCIwPkWerClIBADs=";
+    var zip = new JSZip();
+
+zip.file("Hello.txt", "Hello World\n");
+var img = zip.folder("images");
+//img.file("smile.gif", imgData, {base64: true});
+var i;
+var imgData;
+for (i = 0; i < imgArray.length; ++i) {
+   // imgData = getBase64FromImageUrl(imgArray[i]);
+   //console.log(i);
+   img.file(imgArray[i], imgDataArray[i], {binary: true});
+}
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+    // see FileSaver.js
+    saveAs(content, "example.zip");
+});
+//console.log("download zip");
+window.alert("download zip");
+}
+
+function logFramesPerRoute() {
+    ga("send", {
+        hitType: "event",
+        eventCategory: "movie",
+        eventAction: "framesLoading",
+        eventLabel: streetviewPlayer.getTotalFrames()
+    })
+}
+
+function playRoute(oRoute) {
+    if (streetviewPlayer !== null) {
+        streetviewPlayer.dispose()
+    }
+
+   
+
+// console.log("done saving");
+    streetviewPlayer = new google.maps.StreetViewPlayer($.extend(oRoute, {
+        movieCanvas: document.getElementById("draw"),
+        mapCanvas: document.getElementById("map"),
+        travelMode: getTravelMode(),
+        fps: document.getElementById("fps").value,
+        onLoading: function() {
+            document.getElementById("stage").style.display = "block";
+            document.getElementById("draw").className = "loading";
+            document.getElementById("controls").style.visibility = "hidden";
+            $(document.body).scrollTop($("#stage").offset().top)
+        },
+        onError: function(msg) {
+            setStatus(msg)
+        },
+        onPlay: function() {
+            logFramesPerRoute();
+            document.getElementById("draw").className = "";
+            document.getElementById("controls").style.visibility = "visible";
+            document.getElementById("route-distance").innerHTML = Math.round(streetviewPlayer.getRouteDistance() * 100) / 100 + "km"
+        },
+        onProgress: function(progress) {
+            document.getElementById("progressbar").style.width = progress.loaded + "%";
+            document.getElementById("bufferbar").style.width = Math.min(100 - progress.loaded, progress.buffer) + "%"
+        }
+    }))
+}
+$(function() {
+    $("#downloadModal").on("shown.bs.modal", function() {
+        streetviewPlayer.buildMovie()
+    })
+ 
+});
+
+function initMovie() {
+    var elOrigin = document.getElementById("origin");
+    var elDestination = document.getElementById("destination");
+    var elFile = document.getElementById("gxp-file");
+    clearStatus();
+    if (elFile.value !== "") {
+        importGXP(elFile);
+        return
+    } else if (elOrigin.value === "") {
+        setStatus("Origin field is required.");
+        return
+    } else if (elDestination.value === "") {
+        setStatus("Destination field is required.");
+        return
+    }
+    if (document.getElementById("routename").value !== "") {
+        document.getElementById("route-name-label").innerHTML = document.getElementById("routename").value
+    } else {
+        document.getElementById("route-name-label").innerHTML = elOrigin.value + " to " + elDestination.value
+    }
+    playRoute({
+        origin: elOrigin.value,
+        destination: elDestination.value
+    })
+}
+
+function speedUpMovie() {
+    streetviewPlayer.setFPS(streetviewPlayer.getFPS() + 1)
+}
+
+function slowDownMovie() {
+    streetviewPlayer.setFPS(streetviewPlayer.getFPS() - 1)
+}
+
+function buildLink() {
+    window.location = "#" + $("#mainform").serialize()
+}
+
+function showAdvanced() {
+    $("#advanced-area").removeClass("hidden")
+}
+
+function hideAdvanced() {
+    $("#advanced-area").addClass("hidden")
+}
+
+function getShareURL() {
+    return window.location.protocol + "//" + window.location.hostname + (window.location.port ? ":" + window.location.port : "") + window.location.pathname + (window.location.hash || window.location.search).replace("#", "?")
+}
+
+function shareMovie() {
+    document.getElementById("routeURL").value = getShareURL()
+}
+
+function toggleAdvanced(elCheckbox) {
+    buildLink();
+    if (elCheckbox.checked) {
+        showAdvanced()
+    } else {
+        hideAdvanced()
+    }
+}
+google.maps.StreetViewPlayer = function(config) {
+    this.config = config;
+    this.config.movieCanvas.innerHTML = "";
+    var m_sPanoClient = new google.maps.StreetViewService;
+    var m_aFrames = [];
+    var m_iSensitivity = 50;
+    var m_iFPS = 20;
+    var m_iCurrentFrame = 0;
+    var m_dDirectionsMap = null;
+    var m_dDirectionsDisplay = null;
+    var m_bDoneLoading = true;
+    var m_mMarker = null;
+    var m_iPlayFrame = 0;
+    var m_iTotalFrames = 0;
+    var m_iTotalVertices = 0;
+    var m_bPaused = true;
+    var m_iRouteDistance = 0;
+    var m_elDraw = document.getElementById("draw");
+    var drawContext = m_elDraw.getContext("2d");
+    var self = this;
+    if (typeof this.config.fps !== "undefined" && !isNaN(parseInt(this.config.fps))) {
+        m_iFPS = this.config.fps * 1
+    }
+
+    function toRadians(deg) {
+        return deg * (Math.PI / 180)
+    }
+
+    function bearingTo(ls, ll) {
+        var lat1 = toRadians(ls.lat()),
+            lat2 = toRadians(ll.lat()),
+            dLon = toRadians(ll.lng()) - toRadians(ls.lng());
+        return (Math.atan2(Math.sin(dLon) * Math.cos(lat2), Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLon)) * 180 / Math.PI + 360) % 360
+    }
+
+    function distanceTo(ls, ll) {
+        var dLat = toRadians(ll.lat() - ls.lat());
+        var dLon = toRadians(ll.lng() - ls.lng());
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRadians(ls.lat())) * Math.cos(toRadians(ll.lat())) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return 6371 * c
+    }
+
+    function loadingMovie() {
+        if (self.config.onLoading !== null && self.config.onLoading instanceof Function) {
+            self.config.onLoading.call(this)
+        }
+        self.setProgress(0)
+    }
+
+    function pullPanoDataForVertices(aVertices) {
+        m_iTotalVertices = aVertices.length;
+        pullVertex(0, aVertices)
+    }
+
+    function pushVertex(iCurrentIndex, aVertices, panoData, status) {
+        if (status === "OK") {
+            aVertices[iCurrentIndex].panoData = panoData;
+            setTimeout(pullVertex.bind(this, ++iCurrentIndex, aVertices), 500 / m_iFPS);
+            if (iCurrentIndex > 0) {
+                m_aFrames.push(new Frame(aVertices[iCurrentIndex - 1], aVertices[iCurrentIndex]));
+                m_iTotalFrames++;
+                if (m_bDoneLoading === false) {
+                    m_bDoneLoading = true;
+                    if (self.config.onPlay !== null && self.config.onPlay instanceof Function) {
+                        self.config.onPlay.call(this)
+                    }
+                }
+            }
+        } else {
+            aVertices.splice(iCurrentIndex, 1);
+            m_iTotalVertices--;
+            setTimeout(pullVertex.bind(this, iCurrentIndex, aVertices), 500 / m_iFPS)
+        }
+    }
+
+    function pullVertex(iCurrentIndex, aVertices) {
+        if (iCurrentIndex < m_iTotalVertices) {
+            m_sPanoClient.getPanoramaByLocation(aVertices[iCurrentIndex], m_iSensitivity, pushVertex.bind(this, iCurrentIndex, aVertices))
+        }
+    }
+
+    function getDirections() {
+        var self = this;
+        m_mMarker = null;
+        m_bDoneLoading = false;
+        loadingMovie.call(self);
+        if (typeof this.config.route === "undefined") {
+            (new google.maps.DirectionsService).route({
+                origin: this.config.origin,
+                destination: this.config.destination,
+                travelMode: this.config.travelMode
+            }, function(result, status) {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    var aOverviewPath = [];
+                    for (var i = 0, length = result.routes[0].legs.length; i < length; i++) {
+                        for (var j = 0, lengthJ = result.routes[0].legs[i].steps.length; j < lengthJ; j++) {
+                            for (var k = 0, lengthK = result.routes[0].legs[i].steps[j].lat_lngs.length; k < lengthK; k++) {
+                                aOverviewPath.push(result.routes[0].legs[i].steps[j].lat_lngs[k])
+                            }
+                        }
+                    }
+                    for (var i = 1, length = aOverviewPath.length; i < length; i++) {
+                        if (distanceTo(aOverviewPath[i], aOverviewPath[i - 1]) < .009) {
+                            aOverviewPath.splice(i--, 1);
+                            length--
+                        }
+                    }
+                    loadRoute({
+                        overview_path: aOverviewPath
+                    });
+                    if (m_dDirectionsDisplay === null) {
+                        m_dDirectionsDisplay = new google.maps.DirectionsRenderer;
+                        m_dDirectionsDisplay.setMap(m_dDirectionsMap)
+                    }
+                    m_dDirectionsDisplay.setDirections(result)
+                } else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                    if (self.config.travelMode === "BICYCLING") {
+                        self.config.travelMode = "DRIVING";
+                        $("#travelmode").val("DRIVING");
+                        setTimeout(function() {
+                            getDirections.call(self)
+                        }, 1)
+                    } else {
+                        self.config.onError.call(this, self.config.travelMode + " is not available for this route, please select a different mode of travel under 'Advanced Options'")
+                    }
+                } else if (self.config.onError != null && self.config.onError instanceof Function) {
+                    self.config.onError.call(this, "Error pulling directions for movie, please try again.")
+                }
+            })
+        } else {
+            loadRoute(this.config.route);
+            var flightPath = new google.maps.Polyline({
+                path: this.config.route.overview_path,
+                geodesic: true,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1,
+                strokeWeight: 2
+            });
+            flightPath.setMap(m_dDirectionsMap)
+        }
+    }
+
+    function calculateRouteDistance(aLatLngs) {
+        var fTotalDistance = 0;
+        for (var i = 1, length = aLatLngs.length; i < length; i++) {
+            fTotalDistance += distanceTo(aLatLngs[i], aLatLngs[i - 1])
+        }
+        return fTotalDistance
+    }
+
+    function loadRoute(route) {
+        m_bPaused = true;
+        m_aFrames = [];
+        m_iTotalFrames = 0;
+        m_iCurrentFrame = 0;
+        m_iRouteDistance = calculateRouteDistance(route.overview_path);
+        pullPanoDataForVertices(route.overview_path);
+        if (m_dDirectionsMap === null) {
+            m_dDirectionsMap = new google.maps.Map(self.config.mapCanvas, {
+                zoom: 14,
+                center: route.overview_path[0],
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            m_mMarker = new google.maps.Marker({
+                map: m_dDirectionsMap,
+                location: route.overview_path[0],
+                visible: true
+            })
+        }
+        self.setPaused(false)
+    }
+    var Frame = function(vertex, nextVertex) {
+        this.m_pPanoData = vertex.panoData;
+        this.m_sPanoId = this.m_pPanoData.location.pano;
+        this.m_iCameraYaw = this.m_pPanoData.tiles.centerHeading;
+        this.m_iNextYaw = bearingTo(vertex, nextVertex);
+        this.m_aImages = [];
+        this.m_aCanvasStyles = null;
+        var iMoveYaw = this.m_iNextYaw - this.m_iCameraYaw;
+        if (iMoveYaw < 0) {
+            iMoveYaw += 360
+        } else if (iMoveYaw > 360) {
+            iMoveYaw -= 360
+        }
+        var iImageCenter = 896 + iMoveYaw * (1664 / 360) >> 0;
+        if (iImageCenter > 1664) {
+            iImageCenter -= 1664
+        }
+        this.m_iCanvasOffset = iImageCenter;
+        if (iImageCenter >> 8 === 0) {
+            this.m_aCanvasStyles = [2, 3, 0]
+        } else if (iImageCenter === 256) {
+            this.m_aCanvasStyles = [0]
+        } else if (iImageCenter - 256 >> 9 === 0) {
+            this.m_aCanvasStyles = [0, 1]
+        } else if (iImageCenter === 768) {
+            this.m_aCanvasStyles = [1]
+        } else if (iImageCenter - 768 >> 9 === 0) {
+            this.m_aCanvasStyles = [1, 2]
+        } else if (iImageCenter === 1280) {
+            this.m_aCanvasStyles = [2]
+        } else {
+            this.m_aCanvasStyles = [2, 3]
+        }
+    };
+    Frame.prototype.loadImages = function() {
+        var aImages = this.m_aCanvasStyles;
+        for (var i = 0, lengthI = aImages.length; i < lengthI; i++) {
+            this.m_aImages.push(this.getImage(aImages[i], 0))
+        }
+        //console.log("loadImages done");
+    };
+    Frame.prototype.getLoadedImages = function(cb) {
+        var loadSeries = [];
+        var images = this.m_aCanvasStyles;
+        for (var i = 0, lengthI = images.length; i < lengthI; i++) {
+            loadSeries.push(this.getImage.bind(this, images[i], 0))
+        }
+
+
+        async.parallel(loadSeries, cb)
+    };
+    Frame.prototype.getImage = function(x, y, cb) {
+        var iImage = new Image;
+        if (cb) {
+            iImage.onload = function() {
+                cb(null, iImage)
+
+            }
+        }
+        iImage.crossOrigin = "Anonymous";
+        var imgUrl = ["http://cbk0.google.com/cbk?output=tile&panoid=", this.m_sPanoId, "&zoom=2&x=", x, "&y=", y, "&cb_client=api&fover=0&onerr=3"].join("");
+        iImage.src = imgUrl;
+        console.log(imgUrl);
+
+        imgArray.push(imgUrl);
+
+        var canvas = document.createElement('canvas');
+        canvas.width = iImage.width;
+        canvas.height = iImage.height;
+
+        // Copy the image contents to the canvas
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(iImage, 0, 0);
+        // Get raw image data
+        var imgData = canvas.toDataURL('image/jpeg', 1.0);
+        //var imgData = dataURL.substr(22);
+        //imgData = atob(imgData);
+        console.log(imgData);
+        imgDataArray.push(imgData);
+
+       
+
+
+        /*// Create an empty canvas element
+    var canvas = document.createElement("canvas");
+    canvas.width = iImage.width;
+    canvas.height = iImage.height;
+
+    // Copy the image contents to the canvas
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(iImage, 0, 0);
+
+    // Get the data-URL formatted image
+    // Firefox supports PNG and JPEG. You could check img.src to
+    // guess the original format, but be aware the using "image/jpg"
+    // will re-encode the image.
+    var dataURL = canvas.toDataURL("image/png");
+
+    imgDataArray.push(dataURL.replace(/^data:image\/(png|jpg);base64,/, ""));
+    */
+    console.log("done logging URL");
+
+       // console.log(iImage.src);
+       /* var a = $("<a>")
+        .attr("href", imgUrl)
+        .attr("download", "img.png")
+        .appendTo("body");
+
+        a[0].click();
+
+        a.remove();
+        */
+        return iImage
+    };
+    Frame.prototype.getImageData = function() {
+        var iImageCenter = this.m_iCanvasOffset;
+        var aImages = this.m_aCanvasStyles;
+        if (aImages.length === 3) {
+            var iDiff = 384 + iImageCenter;
+            return [{
+                left: -iDiff,
+                image: this.m_aImages[0].src
+            }, {
+                left: -iDiff + 512,
+                width: "128px",
+                image: this.m_aImages[1].src
+            }, {
+                left: -iDiff + 640,
+                image: this.m_aImages[2].src
+            }]
+        } else if (aImages.length === 1) {
+            return [{
+                left: 0,
+                image: this.m_aImages[0].src
+            }]
+        } else {
+            var iDiff = iImageCenter - (aImages[0] * 2 + 1) * 256;
+            return [{
+                left: -iDiff,
+                image: this.m_aImages[0].src
+            }, {
+                left: -iDiff + 512,
+                image: this.m_aImages[1].src
+            }]
+        }
+    };
+    Frame.prototype.getPosition = function() {
+        return this.m_pPanoData.location.latLng
+    };
+    this.dispose = function() {
+        clearTimeout(m_iPlayFrame)
+    };
+
+    function drawFrameToCanvas(size, width, height, frame, context) {
+        var fRatio = function(iNumber) {
+            return parseInt(Math.floor(iNumber * size / 512))
+        };
+        var data = frame.getImageData();
+        for (var i = 0, length = data.length; i < length; i++) {
+            context.drawImage(frame.m_aImages[i], 0, 0, 512, 512, fRatio(data[i].left), 0, width, height)
+        }
+    }
+
+
+
+
+    function drawFrame(frame) {
+        var iSize = 512;
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+            iSize = Math.min(screen.availWidth, screen.availHeight);
+            if (iSize === screen.availHeight) {
+                m_elDraw.width = iSize;
+                m_elDraw.height = screen.availHeight;
+                m_elDraw.style.margin = "auto"
+            } else {
+                m_elDraw.height = iSize;
+                m_elDraw.width = screen.availWidth
+            }
+        } else {
+            m_elDraw.width = 512;
+            m_elDraw.height = 512
+        }
+        if (frame.m_aImages.length === 0) {
+            console.log("load images");
+            frame.loadImages()
+              
+        }
+        console.log("drawing to Canvas");
+        drawFrameToCanvas(iSize, m_elDraw.width, m_elDraw.height, frame, drawContext);
+        m_mMarker.setPosition(frame.getPosition())
+        //var JSZip = require('JSZip');
+
+       /*var zip = new JSZip();
+zip.file("Hello.txt", "Hello World\n");
+var img = zip.folder("images");
+
+var i;
+var imgData;
+for (i = 0; i < imgArray.length; ++i) {
+   // imgData = getBase64FromImageUrl(imgArray[i]);
+   //console.log(i);
+   img.file(imgArray[i], imgDataArray[i], {base64: true});
+}
+
+zip.generateAsync({type:"blob"})
+.then(function(content) {
+    // see FileSaver.js
+    //console.log("save");
+    saveAs(content, "example.zip");
+});
+*/
+
+    }
+
+    function framePlayer() {
+        if (m_bPaused === false) {
+            if (m_iCurrentFrame >= m_iTotalFrames) {
+                self.setProgress(m_iTotalFrames)
+            } else if (m_bPaused === false && m_iTotalFrames > 0 && m_iCurrentFrame <= m_iTotalFrames) {
+                self.setProgress(m_iCurrentFrame);
+                m_iCurrentFrame++
+            }
+            m_iPlayFrame = setTimeout(framePlayer, 1e3 / m_iFPS >> 0)
+        }
+    }
+    this.setSensitivity = function(sensitivity) {
+        m_iSensitivity = sensitivity
+    };
+    this.getSensitivity = function() {
+        return m_iSensitivity
+    };
+    this.getRouteDistance = function() {
+        return m_iRouteDistance
+    };
+    this.setFPS = function(fps) {
+        m_iFPS = Math.max(1, fps)
+    };
+    this.getFPS = function() {
+        return m_iFPS
+    };
+
+    function preloadFrames() {
+        for (var i = m_iCurrentFrame + 1; i < Math.min(m_aFrames.length, i + m_iFPS); i++) {
+            if (m_aFrames[i].m_aImages.length === 0) {
+                m_aFrames[i].loadImages()
+            }
+        }
+    }
+    this.setProgress = function(newFrame) {
+        m_iCurrentFrame = newFrame;
+        if (m_iCurrentFrame >= 0 && m_iCurrentFrame < m_aFrames.length) {
+            drawFrame(m_aFrames[m_iCurrentFrame]);
+            preloadFrames()
+        }
+        self.config.onProgress.call(this, {
+            loaded: parseInt(100 * m_iCurrentFrame / (m_iTotalVertices - 1)),
+            buffer: parseInt(100 * ((m_iTotalFrames - m_iCurrentFrame) / (m_iTotalVertices - 1)))
+        })
+    };
+    this.setPaused = function(paused) {
+        m_bPaused = paused;
+        if (paused === false) {
+            framePlayer.call(self)
+        }
+    };
+    this.getPaused = function() {
+        return m_bPaused
+    };
+    this.getTotalVertices = function() {
+        return m_iTotalVertices
+    };
+    this.getTotalFrames = function() {
+        return m_iTotalFrames
+    };
+    this.buildMovie = function() {
+        var m_gif = new GIF({
+            workers: 2,
+            workerScript: "js/gif.worker.js",
+            quality: 10
+        });
+        var self = this;
+        document.getElementById("downloadResult").innerHTML = "";
+
+        function drawAFrame(frame) {
+            var canvas = document.createElement("canvas");
+            canvas.id = 'canvas';
+            canvas.width = 512;
+            canvas.height = 512;
+           // canvas.setAttribute("id", "canvas");
+            document.body.appendChild(canvas); // adds the canvas to the body element
+            var context = canvas.getContext("2d");
+          //  download_image();
+            drawFrameToCanvas(512, 512, 512, frame, context);
+            m_gif.addFrame(canvas, {
+                delay: 1e3
+            })
+        }
+
+        function drawFrameNumber(n) {
+            if (n >= m_aFrames.length) {
+                m_gif.render()
+            } else {
+                m_aFrames[n].getLoadedImages(function(err, images) {
+                    m_aFrames[n].m_aImages = images;
+                    drawAFrame(m_aFrames[n]);
+                    drawFrameNumber(n + 1)
+                })
+            }
+        }
+        var downloadProgress = document.getElementById("downloadProgress");
+        m_gif.on("progress", function(progress) {
+            downloadProgress.style.width = parseInt(progress * 100) + "%"
+        });
+        m_gif.on("finished", function(blob) {
+            var help = document.createTextNode("Right click and save to download");
+            var img = new Image;
+            img.src = URL.createObjectURL(blob);
+            document.getElementById("downloadResult").appendChild(img);
+            ga("send", "event", "videos", "download", m_aFrames.length)
+        });
+        drawFrameNumber(0)
+    };
+    getDirections.call(this)
+};
+
+
+/*! FileSaver.js
+ *  A saveAs() FileSaver implementation.
+ *  2014-01-24
+ *
+ *  By Eli Grey, http://eligrey.com
+ *  License: X11/MIT
+ *    See LICENSE.md
+ */
+
+/*global self */
+/*jslint bitwise: true, indent: 4, laxbreak: true, laxcomma: true, smarttabs: true, plusplus: true */
+
+/*! @source http://purl.eligrey.com/github/FileSaver.js/blob/master/FileSaver.js */
+
+var saveAs = saveAs
+  // IE 10+ (native saveAs)
+  || (typeof navigator !== "undefined" &&
+      navigator.msSaveOrOpenBlob && navigator.msSaveOrOpenBlob.bind(navigator))
+  // Everyone else
+  || (function(view) {
+    "use strict";
+    // IE <10 is explicitly unsupported
+    if (typeof navigator !== "undefined" &&
+        /MSIE [1-9]\./.test(navigator.userAgent)) {
+        return;
+    }
+    var
+          doc = view.document
+          // only get URL when necessary in case BlobBuilder.js hasn't overridden it yet
+        , get_URL = function() {
+            return view.URL || view.webkitURL || view;
+        }
+        , URL = view.URL || view.webkitURL || view
+        , save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a")
+        , can_use_save_link = !view.externalHost && "download" in save_link
+        , click = function(node) {
+            var event = doc.createEvent("MouseEvents");
+            event.initMouseEvent(
+                "click", true, false, view, 0, 0, 0, 0, 0
+                , false, false, false, false, 0, null
+            );
+            node.dispatchEvent(event);
+        }
+        , webkit_req_fs = view.webkitRequestFileSystem
+        , req_fs = view.requestFileSystem || webkit_req_fs || view.mozRequestFileSystem
+        , throw_outside = function(ex) {
+            (view.setImmediate || view.setTimeout)(function() {
+                throw ex;
+            }, 0);
+        }
+        , force_saveable_type = "application/octet-stream"
+        , fs_min_size = 0
+        , deletion_queue = []
+        , process_deletion_queue = function() {
+            var i = deletion_queue.length;
+            while (i--) {
+                var file = deletion_queue[i];
+                if (typeof file === "string") { // file is an object URL
+                    URL.revokeObjectURL(file);
+                } else { // file is a File
+                    file.remove();
+                }
+            }
+            deletion_queue.length = 0; // clear queue
+        }
+        , dispatch = function(filesaver, event_types, event) {
+            event_types = [].concat(event_types);
+            var i = event_types.length;
+            while (i--) {
+                var listener = filesaver["on" + event_types[i]];
+                if (typeof listener === "function") {
+                    try {
+                        listener.call(filesaver, event || filesaver);
+                    } catch (ex) {
+                        throw_outside(ex);
+                    }
+                }
+            }
+        }
+        , FileSaver = function(blob, name) {
+            // First try a.download, then web filesystem, then object URLs
+            var
+                  filesaver = this
+                , type = blob.type
+                , blob_changed = false
+                , object_url
+                , target_view
+                , get_object_url = function() {
+                    var object_url = get_URL().createObjectURL(blob);
+                    deletion_queue.push(object_url);
+                    return object_url;
+                }
+                , dispatch_all = function() {
+                    dispatch(filesaver, "writestart progress write writeend".split(" "));
+                }
+                // on any filesys errors revert to saving with object URLs
+                , fs_error = function() {
+                    // don't create more object URLs than needed
+                    if (blob_changed || !object_url) {
+                        object_url = get_object_url(blob);
+                    }
+                    if (target_view) {
+                        target_view.location.href = object_url;
+                    } else {
+                        window.open(object_url, "_blank");
+                    }
+                    filesaver.readyState = filesaver.DONE;
+                    dispatch_all();
+                }
+                , abortable = function(func) {
+                    return function() {
+                        if (filesaver.readyState !== filesaver.DONE) {
+                            return func.apply(this, arguments);
+                        }
+                    };
+                }
+                , create_if_not_found = {create: true, exclusive: false}
+                , slice
+            ;
+            filesaver.readyState = filesaver.INIT;
+            if (!name) {
+                name = "download";
+            }
+            if (can_use_save_link) {
+                object_url = get_object_url(blob);
+                // FF for Android has a nasty garbage collection mechanism
+                // that turns all objects that are not pure javascript into 'deadObject'
+                // this means `doc` and `save_link` are unusable and need to be recreated
+                // `view` is usable though:
+                doc = view.document;
+                save_link = doc.createElementNS("http://www.w3.org/1999/xhtml", "a");
+                save_link.href = object_url;
+                save_link.download = name;
+                var event = doc.createEvent("MouseEvents");
+                event.initMouseEvent(
+                    "click", true, false, view, 0, 0, 0, 0, 0
+                    , false, false, false, false, 0, null
+                );
+                save_link.dispatchEvent(event);
+                filesaver.readyState = filesaver.DONE;
+                dispatch_all();
+                return;
+            }
+            // Object and web filesystem URLs have a problem saving in Google Chrome when
+            // viewed in a tab, so I force save with application/octet-stream
+            // http://code.google.com/p/chromium/issues/detail?id=91158
+            if (view.chrome && type && type !== force_saveable_type) {
+                slice = blob.slice || blob.webkitSlice;
+                blob = slice.call(blob, 0, blob.size, force_saveable_type);
+                blob_changed = true;
+            }
+            // Since I can't be sure that the guessed media type will trigger a download
+            // in WebKit, I append .download to the filename.
+            // https://bugs.webkit.org/show_bug.cgi?id=65440
+            if (webkit_req_fs && name !== "download") {
+                name += ".download";
+            }
+            if (type === force_saveable_type || webkit_req_fs) {
+                target_view = view;
+            }
+            if (!req_fs) {
+                fs_error();
+                return;
+            }
+            fs_min_size += blob.size;
+            req_fs(view.TEMPORARY, fs_min_size, abortable(function(fs) {
+                fs.root.getDirectory("saved", create_if_not_found, abortable(function(dir) {
+                    var save = function() {
+                        dir.getFile(name, create_if_not_found, abortable(function(file) {
+                            file.createWriter(abortable(function(writer) {
+                                writer.onwriteend = function(event) {
+                                    target_view.location.href = file.toURL();
+                                    deletion_queue.push(file);
+                                    filesaver.readyState = filesaver.DONE;
+                                    dispatch(filesaver, "writeend", event);
+                                };
+                                writer.onerror = function() {
+                                    var error = writer.error;
+                                    if (error.code !== error.ABORT_ERR) {
+                                        fs_error();
+                                    }
+                                };
+                                "writestart progress write abort".split(" ").forEach(function(event) {
+                                    writer["on" + event] = filesaver["on" + event];
+                                });
+                                writer.write(blob);
+                                filesaver.abort = function() {
+                                    writer.abort();
+                                    filesaver.readyState = filesaver.DONE;
+                                };
+                                filesaver.readyState = filesaver.WRITING;
+                            }), fs_error);
+                        }), fs_error);
+                    };
+                    dir.getFile(name, {create: false}, abortable(function(file) {
+                        // delete file if it already exists
+                        file.remove();
+                        save();
+                    }), abortable(function(ex) {
+                        if (ex.code === ex.NOT_FOUND_ERR) {
+                            save();
+                        } else {
+                            fs_error();
+                        }
+                    }));
+                }), fs_error);
+            }), fs_error);
+        }
+        , FS_proto = FileSaver.prototype
+        , saveAs = function(blob, name) {
+            return new FileSaver(blob, name);
+        }
+    ;
+    FS_proto.abort = function() {
+        var filesaver = this;
+        filesaver.readyState = filesaver.DONE;
+        dispatch(filesaver, "abort");
+    };
+    FS_proto.readyState = FS_proto.INIT = 0;
+    FS_proto.WRITING = 1;
+    FS_proto.DONE = 2;
+
+    FS_proto.error =
+    FS_proto.onwritestart =
+    FS_proto.onprogress =
+    FS_proto.onwrite =
+    FS_proto.onabort =
+    FS_proto.onerror =
+    FS_proto.onwriteend =
+        null;
+
+    view.addEventListener("unload", process_deletion_queue, false);
+    saveAs.unload = function() {
+        process_deletion_queue();
+        view.removeEventListener("unload", process_deletion_queue, false);
+    };
+    return saveAs;
+}(
+       typeof self !== "undefined" && self
+    || typeof window !== "undefined" && window
+    || this.content
+));
+// `self` is undefined in Firefox for Android content script context
+// while `this` is nsIContentFrameMessageManager
+// with an attribute `content` that corresponds to the window
+
+if (typeof module !== "undefined") module.exports = saveAs;
+
+
+
+</script>
+ <meta charset="utf-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Google Maps Streetview Player</title>
+ <meta name="description" content="Google Maps Streetview Player : Play any set of directions from google maps. View google maps streetview images in sequence creating a video of a route. View route data for driving, biking, or walking. Created videos can be downloaded to use in various projects.">
+ <link rel="icon" href="images/favicon.ico">
+ <link rel="stylesheet" type="text/css" href="css/c.css"/>
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <meta name="google-translate-customization" content="3939594f8eabe68d-f9ee46c3d54711d5-gccd11ff5a5b030f8-1a">
+<h1>Speed: <span id="val"><%=val%></span></h1>
+</head>
+<body>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-4">
+   <div class="jumbotron">
+    <h1 class="page-header">Google Maps <small>Streetview Player</small></h1>
+    <p class="lead">The google maps streetview player will take in either a starting point and end point, or a provided file of a route and 
+              provide a playthrough of the google streetview images that are available.</p>
+
+  </div>
+ </div>
+          <div class="panel panel-primary">
+      <div class="panel-heading">Options</div>
+            <div class="panel-body">
+              <form id="mainform" class="form-horizontal" onsubmit="initMovie();return false">
+                <div class="form-group">
+                  <label for="origin" class="col-sm-2 control-label">Origin</label>
+                  <div class="col-sm-10">
+                    <input name="origin" class="form-control" onchange="buildLink()" placeholder="origin" type="text" id="origin"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="destination" class="col-sm-2 control-label">Destination</label>
+                  <div class="col-sm-10">
+                    <input name="destination" class="form-control" onchange="buildLink()" placeholder="destination" type="text" id="destination"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <div class="checkbox">
+                      <label>
+                        <input name="advanced" id="advanced" type="checkbox" onclick="toggleAdvanced(this)"> Advanced Options
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div id="advanced-area" class="hidden">
+                  <div class="form-group">
+                    <label for="fps" class="col-sm-2 control-label">FPS</label>
+                    <div class="col-sm-10">
+                      <input name="fps" class="form-control" onchange="buildLink()" placeholder="frames per second" type="text" id="fps" value="1" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="travelmode" class="col-sm-2 control-label">Travel mode</label>
+                    <div class="col-sm-10">
+                      <select name="travelmode" class="form-control" onchange="buildLink()" id="travelmode">
+                        <option value="DRIVING">Driving</option>
+                        <option value="BICYCLING" selected>Bicycling</option>
+                        <option value="TRANSIT">Transit</option>
+                        <option value="WALKING">Walking</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="gxp-file" class="col-sm-2 control-label">Upload coordinates (gxp or kml)</label>
+                    <div class="col-sm-10">
+                      <input type="file" id="gxp-file" class="btn btn-secondary" />
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="routename" class="col-sm-2 control-label">Route Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" id="routename" name="rn" onchange="buildLink()" class="form-control" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="Play"/>
+                  </div>
+                </div>
+              </form>
+              <a href="rss.xml" target="_blank" class="rss-link">version 1.3.4</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" style="margin-top:20px">
+          <div id="statusbox" class="alert alert-danger" style="display:none"></div>
+          <div class="panel panel-info" id="stage" style="display:none">
+            <div class="panel-heading">
+              <span style="float:right" id="route-distance"></span>
+              <span id="route-name-label"></span>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div style="width:512px;margin:auto">
+                    <canvas id="draw"></canvas>
+                    <div id="progress" class="progress">
+                      <div class="progress-bar progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="progressbar" style="width:0%"></div>
+                      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bufferbar" style="width:0%"></div>
+                    </div>
+                    <div class="btn-group" id="controls" style="visibility:hidden;height:20px">
+                      <input class="btn btn-sm btn-primary" id="btn_playpause" onclick="pauseMovie(this)" type="button" value="Pause"/>
+                      <input class="btn btn-sm" onclick="speedUpMovie()" type="button" value="Faster"/>
+                      <input class="btn btn-sm" onclick="slowDownMovie()" type="button" value="Slower"/>
+                      <input class="btn btn-sm" type="button" data-toggle="modal" data-target="#downloadModal" value="Download"/>
+                      <input class="btn btn-sm" onclick="shareMovie()" type="button" value="Share" data-toggle="modal" data-target="#shareModal" />
+                      <input class="btn btn-sm" onclick="fullScreen()" type="button" value="Fullscreen" />
+                       <input class="btn btn-sm" onclick="downloadZip()" type="button" value="Zip" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div id="map"></div>
+                  <div id="directions"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- STREETVIEW_PLAYER -->
+      <div class="row">
+        <div class="col-md-6">
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-1225680890389163"
+               data-ad-slot="9699540536"></ins>
+        </div>
+        <div class="col-md-6">
+          <ins class="adsbygoogle"
+               style="display:inline-block;width:728px;height:90px"
+               data-ad-client="ca-pub-1225680890389163"
+               data-ad-slot="4739460535"></ins>
+        </div>
+      </div>
+      <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  
+    <!-- Download Modal -->
+    <div class="modal fade" id="downloadModal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Downloading Route</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-sm-12">
+                <p>Exporting your route as a GIF</p>
+                <p class="help-block">Only as much of the movie which has loaded in the browser will be added to the GIF. Image will appear below when ready. Right click the image to save a copy.</p>
+    <div class="progress">
+      <div class="progress-bar progress-bar" role="progressbar" id="downloadProgress" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+    </div>
+              </div>
+            </div>
+            <div class="row" id="downloadResult">
+            </div>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- Share Modal -->
+    <div class="modal fade" id="shareModal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Share</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-sm-12">
+                <p>Share your route with the world.</p>
+                <input onclick="this.select()" id="routeURL" class="form-control" value="" />
+                <p class="help-block">Copy and paste the above URL to share</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+  </body>
+</html>
