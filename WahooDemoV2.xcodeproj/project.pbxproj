@@ -1,0 +1,1119 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC01EF0F1B7D6C4F00016380 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC01EF0E1B7D6C4F00016380 /* SystemConfiguration.framework */; };
+		EC0A767F1A2E790F00D4CF10 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A767E1A2E790F00D4CF10 /* main.m */; };
+		EC0A76821A2E790F00D4CF10 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A76811A2E790F00D4CF10 /* AppDelegate.m */; };
+		EC0A76851A2E790F00D4CF10 /* MenuTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A76841A2E790F00D4CF10 /* MenuTVC.m */; };
+		EC0A76881A2E790F00D4CF10 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76861A2E790F00D4CF10 /* Main.storyboard */; };
+		EC0A768D1A2E790F00D4CF10 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC0A768B1A2E790F00D4CF10 /* LaunchScreen.xib */; };
+		EC0A76991A2E790F00D4CF10 /* WahooDemoV2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A76981A2E790F00D4CF10 /* WahooDemoV2Tests.m */; };
+		EC0A76A61A2E7A2700D4CF10 /* DiscoveryTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A76A51A2E7A2700D4CF10 /* DiscoveryTVC.m */; };
+		EC0A76AE1A2E7AB400D4CF10 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A76A71A2E7A7800D4CF10 /* CoreBluetooth.framework */; };
+		EC0A76AF1A2E7ABA00D4CF10 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A76A91A2E7A8000D4CF10 /* ExternalAccessory.framework */; };
+		EC0A76B41A2E7B6400D4CF10 /* SensorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A76B31A2E7B6400D4CF10 /* SensorCell.m */; };
+		EC0A76B81A2E859D00D4CF10 /* WFBtleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76B61A2E859D00D4CF10 /* WFBtleLogo.png */; };
+		EC0A76B91A2E859D00D4CF10 /* WFBtleLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76B71A2E859D00D4CF10 /* WFBtleLogo@2x.png */; };
+		EC0A76BC1A2E85C500D4CF10 /* WFANT+.logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76BA1A2E85C500D4CF10 /* WFANT+.logo.png */; };
+		EC0A76BD1A2E85C500D4CF10 /* WFANT+.logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76BB1A2E85C500D4CF10 /* WFANT+.logo@2x.png */; };
+		EC0A77241A2E85FE00D4CF10 /* WFSilAntFootpod-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76BF1A2E85FE00D4CF10 /* WFSilAntFootpod-30.png */; };
+		EC0A77251A2E85FE00D4CF10 /* WFSilAntFootpod-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C01A2E85FE00D4CF10 /* WFSilAntFootpod-30@2x.png */; };
+		EC0A77261A2E85FE00D4CF10 /* WFSilAntFootpod.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C11A2E85FE00D4CF10 /* WFSilAntFootpod.png */; };
+		EC0A77271A2E85FE00D4CF10 /* WFSilAntFootpod@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C21A2E85FE00D4CF10 /* WFSilAntFootpod@2x.png */; };
+		EC0A77281A2E85FE00D4CF10 /* WFSilAntHR-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C31A2E85FE00D4CF10 /* WFSilAntHR-30.png */; };
+		EC0A77291A2E85FE00D4CF10 /* WFSilAntHR-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C41A2E85FE00D4CF10 /* WFSilAntHR-30@2x.png */; };
+		EC0A772A1A2E85FE00D4CF10 /* WFSilAntHR.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C51A2E85FE00D4CF10 /* WFSilAntHR.png */; };
+		EC0A772B1A2E85FE00D4CF10 /* WFSilAntHR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C61A2E85FE00D4CF10 /* WFSilAntHR@2x.png */; };
+		EC0A772C1A2E85FE00D4CF10 /* WFSilAntSC-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C71A2E85FE00D4CF10 /* WFSilAntSC-30.png */; };
+		EC0A772D1A2E85FE00D4CF10 /* WFSilAntSC-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C81A2E85FE00D4CF10 /* WFSilAntSC-30@2x.png */; };
+		EC0A772E1A2E85FE00D4CF10 /* WFSilAntSC.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76C91A2E85FE00D4CF10 /* WFSilAntSC.png */; };
+		EC0A772F1A2E85FE00D4CF10 /* WFSilAntSC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CA1A2E85FE00D4CF10 /* WFSilAntSC@2x.png */; };
+		EC0A77301A2E85FE00D4CF10 /* WFSilBalance-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CB1A2E85FE00D4CF10 /* WFSilBalance-30.png */; };
+		EC0A77311A2E85FE00D4CF10 /* WFSilBalance-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CC1A2E85FE00D4CF10 /* WFSilBalance-30@2x.png */; };
+		EC0A77321A2E85FE00D4CF10 /* WFSilBalance.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CD1A2E85FE00D4CF10 /* WFSilBalance.png */; };
+		EC0A77331A2E85FE00D4CF10 /* WFSilBalance@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CE1A2E85FE00D4CF10 /* WFSilBalance@2x.png */; };
+		EC0A77341A2E85FE00D4CF10 /* WFSilBlueHR-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76CF1A2E85FE00D4CF10 /* WFSilBlueHR-30.png */; };
+		EC0A77351A2E85FE00D4CF10 /* WFSilBlueHR-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D01A2E85FE00D4CF10 /* WFSilBlueHR-30@2x.png */; };
+		EC0A77361A2E85FE00D4CF10 /* WFSilBlueHR.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D11A2E85FE00D4CF10 /* WFSilBlueHR.png */; };
+		EC0A77371A2E85FE00D4CF10 /* WFSilBlueHR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D21A2E85FE00D4CF10 /* WFSilBlueHR@2x.png */; };
+		EC0A77381A2E85FE00D4CF10 /* WFSilBlueSC-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D31A2E85FE00D4CF10 /* WFSilBlueSC-30.png */; };
+		EC0A77391A2E85FE00D4CF10 /* WFSilBlueSC-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D41A2E85FE00D4CF10 /* WFSilBlueSC-30@2x.png */; };
+		EC0A773A1A2E85FE00D4CF10 /* WFSilBlueSC.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D51A2E85FE00D4CF10 /* WFSilBlueSC.png */; };
+		EC0A773B1A2E85FE00D4CF10 /* WFSilBlueSC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D61A2E85FE00D4CF10 /* WFSilBlueSC@2x.png */; };
+		EC0A773C1A2E85FE00D4CF10 /* WFSilCasioSTB1000-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D71A2E85FE00D4CF10 /* WFSilCasioSTB1000-30.png */; };
+		EC0A773D1A2E85FE00D4CF10 /* WFSilCasioSTB1000-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D81A2E85FE00D4CF10 /* WFSilCasioSTB1000-30@2x.png */; };
+		EC0A773E1A2E85FE00D4CF10 /* WFSilCasioSTB1000.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76D91A2E85FE00D4CF10 /* WFSilCasioSTB1000.png */; };
+		EC0A773F1A2E85FE00D4CF10 /* WFSilCasioSTB1000@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DA1A2E85FE00D4CF10 /* WFSilCasioSTB1000@2x.png */; };
+		EC0A77401A2E85FE00D4CF10 /* WFSilEcho-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DB1A2E85FE00D4CF10 /* WFSilEcho-30.png */; };
+		EC0A77411A2E85FE00D4CF10 /* WFSilEcho-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DC1A2E85FE00D4CF10 /* WFSilEcho-30@2x.png */; };
+		EC0A77421A2E85FE00D4CF10 /* WFSilEcho.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DD1A2E85FE00D4CF10 /* WFSilEcho.png */; };
+		EC0A77431A2E85FE00D4CF10 /* WFSilEcho@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DE1A2E85FE00D4CF10 /* WFSilEcho@2x.png */; };
+		EC0A77441A2E85FE00D4CF10 /* WFSilFisicaKey-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76DF1A2E85FE00D4CF10 /* WFSilFisicaKey-30.png */; };
+		EC0A77451A2E85FE00D4CF10 /* WFSilFisicaKey-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E01A2E85FE00D4CF10 /* WFSilFisicaKey-30@2x.png */; };
+		EC0A77461A2E85FE00D4CF10 /* WFSilFisicaKey.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E11A2E85FE00D4CF10 /* WFSilFisicaKey.png */; };
+		EC0A77471A2E85FE00D4CF10 /* WFSilFisicaKey@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E21A2E85FE00D4CF10 /* WFSilFisicaKey@2x.png */; };
+		EC0A77481A2E85FE00D4CF10 /* WFSilGenericCadence-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E31A2E85FE00D4CF10 /* WFSilGenericCadence-30.png */; };
+		EC0A77491A2E85FE00D4CF10 /* WFSilGenericCadence-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E41A2E85FE00D4CF10 /* WFSilGenericCadence-30@2x.png */; };
+		EC0A774A1A2E85FE00D4CF10 /* WFSilGenericCadence.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E51A2E85FE00D4CF10 /* WFSilGenericCadence.png */; };
+		EC0A774B1A2E85FE00D4CF10 /* WFSilGenericCadence@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E61A2E85FE00D4CF10 /* WFSilGenericCadence@2x.png */; };
+		EC0A774C1A2E85FE00D4CF10 /* WFSilGenericFootpod-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E71A2E85FE00D4CF10 /* WFSilGenericFootpod-30.png */; };
+		EC0A774D1A2E85FE00D4CF10 /* WFSilGenericFootpod-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E81A2E85FE00D4CF10 /* WFSilGenericFootpod-30@2x.png */; };
+		EC0A774E1A2E85FE00D4CF10 /* WFSilGenericFootpod.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76E91A2E85FE00D4CF10 /* WFSilGenericFootpod.png */; };
+		EC0A774F1A2E85FE00D4CF10 /* WFSilGenericFootpod@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76EA1A2E85FE00D4CF10 /* WFSilGenericFootpod@2x.png */; };
+		EC0A77501A2E85FE00D4CF10 /* WFSilGenericHR-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76EB1A2E85FE00D4CF10 /* WFSilGenericHR-30.png */; };
+		EC0A77511A2E85FE00D4CF10 /* WFSilGenericHR-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76EC1A2E85FE00D4CF10 /* WFSilGenericHR-30@2x.png */; };
+		EC0A77521A2E85FE00D4CF10 /* WFSilGenericHR.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76ED1A2E85FE00D4CF10 /* WFSilGenericHR.png */; };
+		EC0A77531A2E85FE00D4CF10 /* WFSilGenericHR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76EE1A2E85FE00D4CF10 /* WFSilGenericHR@2x.png */; };
+		EC0A77541A2E85FE00D4CF10 /* WFSilGenericPower-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76EF1A2E85FE00D4CF10 /* WFSilGenericPower-30.png */; };
+		EC0A77551A2E85FE00D4CF10 /* WFSilGenericPower-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F01A2E85FE00D4CF10 /* WFSilGenericPower-30@2x.png */; };
+		EC0A77561A2E85FE00D4CF10 /* WFSilGenericPower.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F11A2E85FE00D4CF10 /* WFSilGenericPower.png */; };
+		EC0A77571A2E85FE00D4CF10 /* WFSilGenericPower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F21A2E85FE00D4CF10 /* WFSilGenericPower@2x.png */; };
+		EC0A77581A2E85FE00D4CF10 /* WFSilGenericSensor-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F31A2E85FE00D4CF10 /* WFSilGenericSensor-30.png */; };
+		EC0A77591A2E85FE00D4CF10 /* WFSilGenericSensor-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F41A2E85FE00D4CF10 /* WFSilGenericSensor-30@2x.png */; };
+		EC0A775A1A2E85FE00D4CF10 /* WFSilGenericSensor.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F51A2E85FE00D4CF10 /* WFSilGenericSensor.png */; };
+		EC0A775B1A2E85FE00D4CF10 /* WFSilGenericSensor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F61A2E85FE00D4CF10 /* WFSilGenericSensor@2x.png */; };
+		EC0A775C1A2E85FE00D4CF10 /* WFSilGenericSpeed-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F71A2E85FE00D4CF10 /* WFSilGenericSpeed-30.png */; };
+		EC0A775D1A2E85FE00D4CF10 /* WFSilGenericSpeed-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F81A2E85FE00D4CF10 /* WFSilGenericSpeed-30@2x.png */; };
+		EC0A775E1A2E85FE00D4CF10 /* WFSilGenericSpeed.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76F91A2E85FE00D4CF10 /* WFSilGenericSpeed.png */; };
+		EC0A775F1A2E85FE00D4CF10 /* WFSilGenericSpeed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FA1A2E85FE00D4CF10 /* WFSilGenericSpeed@2x.png */; };
+		EC0A77601A2E85FE00D4CF10 /* WFSilKICKR-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FB1A2E85FE00D4CF10 /* WFSilKICKR-30.png */; };
+		EC0A77611A2E85FE00D4CF10 /* WFSilKICKR-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FC1A2E85FE00D4CF10 /* WFSilKICKR-30@2x.png */; };
+		EC0A77621A2E85FE00D4CF10 /* WFSilKICKR.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FD1A2E85FE00D4CF10 /* WFSilKICKR.png */; };
+		EC0A77631A2E85FE00D4CF10 /* WFSilKICKR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FE1A2E85FE00D4CF10 /* WFSilKICKR@2x.png */; };
+		EC0A77641A2E85FE00D4CF10 /* WFSilPowerCrankset-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A76FF1A2E85FE00D4CF10 /* WFSilPowerCrankset-30.png */; };
+		EC0A77651A2E85FE00D4CF10 /* WFSilPowerCrankset-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77001A2E85FE00D4CF10 /* WFSilPowerCrankset-30@2x.png */; };
+		EC0A77661A2E85FE00D4CF10 /* WFSilPowerCrankset.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77011A2E85FE00D4CF10 /* WFSilPowerCrankset.png */; };
+		EC0A77671A2E85FE00D4CF10 /* WFSilPowerCrankset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77021A2E85FE00D4CF10 /* WFSilPowerCrankset@2x.png */; };
+		EC0A77681A2E85FE00D4CF10 /* WFSilPowerDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77031A2E85FE00D4CF10 /* WFSilPowerDefault.png */; };
+		EC0A77691A2E85FE00D4CF10 /* WFSilPowerHub-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77041A2E85FE00D4CF10 /* WFSilPowerHub-30.png */; };
+		EC0A776A1A2E85FE00D4CF10 /* WFSilPowerHub-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77051A2E85FE00D4CF10 /* WFSilPowerHub-30@2x.png */; };
+		EC0A776B1A2E85FE00D4CF10 /* WFSilPowerHub.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77061A2E85FE00D4CF10 /* WFSilPowerHub.png */; };
+		EC0A776C1A2E85FE00D4CF10 /* WFSilPowerHub@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77071A2E85FE00D4CF10 /* WFSilPowerHub@2x.png */; };
+		EC0A776D1A2E85FE00D4CF10 /* WFSilPowerPedal-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77081A2E85FE00D4CF10 /* WFSilPowerPedal-30.png */; };
+		EC0A776E1A2E85FE00D4CF10 /* WFSilPowerPedal-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77091A2E85FE00D4CF10 /* WFSilPowerPedal-30@2x.png */; };
+		EC0A776F1A2E85FE00D4CF10 /* WFSilPowerPedal.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770A1A2E85FE00D4CF10 /* WFSilPowerPedal.png */; };
+		EC0A77701A2E85FE00D4CF10 /* WFSilPowerPedal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770B1A2E85FE00D4CF10 /* WFSilPowerPedal@2x.png */; };
+		EC0A77711A2E85FE00D4CF10 /* WFSilPowerStages-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770C1A2E85FE00D4CF10 /* WFSilPowerStages-30.png */; };
+		EC0A77721A2E85FE00D4CF10 /* WFSilPowerStages-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770D1A2E85FE00D4CF10 /* WFSilPowerStages-30@2x.png */; };
+		EC0A77731A2E85FE00D4CF10 /* WFSilPowerStages.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770E1A2E85FE00D4CF10 /* WFSilPowerStages.png */; };
+		EC0A77741A2E85FE00D4CF10 /* WFSilPowerStages@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A770F1A2E85FE00D4CF10 /* WFSilPowerStages@2x.png */; };
+		EC0A77751A2E85FE00D4CF10 /* WFSilPROTKT-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77101A2E85FE00D4CF10 /* WFSilPROTKT-30.png */; };
+		EC0A77761A2E85FE00D4CF10 /* WFSilPROTKT-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77111A2E85FE00D4CF10 /* WFSilPROTKT-30@2x.png */; };
+		EC0A77771A2E85FE00D4CF10 /* WFSilPROTKT.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77121A2E85FE00D4CF10 /* WFSilPROTKT.png */; };
+		EC0A77781A2E85FE00D4CF10 /* WFSilPROTKT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77131A2E85FE00D4CF10 /* WFSilPROTKT@2x.png */; };
+		EC0A77791A2E85FE00D4CF10 /* WFSilRFLKT-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77141A2E85FE00D4CF10 /* WFSilRFLKT-30.png */; };
+		EC0A777A1A2E85FE00D4CF10 /* WFSilRFLKT-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77151A2E85FE00D4CF10 /* WFSilRFLKT-30@2x.png */; };
+		EC0A777B1A2E85FE00D4CF10 /* WFSilRFLKT.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77161A2E85FE00D4CF10 /* WFSilRFLKT.png */; };
+		EC0A777C1A2E85FE00D4CF10 /* WFSilRFLKT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77171A2E85FE00D4CF10 /* WFSilRFLKT@2x.png */; };
+		EC0A777D1A2E85FE00D4CF10 /* WFSilRPM-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77181A2E85FE00D4CF10 /* WFSilRPM-30.png */; };
+		EC0A777E1A2E85FE00D4CF10 /* WFSilRPM-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77191A2E85FE00D4CF10 /* WFSilRPM-30@2x.png */; };
+		EC0A777F1A2E85FE00D4CF10 /* WFSilRPM.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771A1A2E85FE00D4CF10 /* WFSilRPM.png */; };
+		EC0A77801A2E85FE00D4CF10 /* WFSilRPM@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771B1A2E85FE00D4CF10 /* WFSilRPM@2x.png */; };
+		EC0A77811A2E85FE00D4CF10 /* WFSilTICKR-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771C1A2E85FE00D4CF10 /* WFSilTICKR-30.png */; };
+		EC0A77821A2E85FE00D4CF10 /* WFSilTICKR-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771D1A2E85FE00D4CF10 /* WFSilTICKR-30@2x.png */; };
+		EC0A77831A2E85FE00D4CF10 /* WFSilTICKR.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771E1A2E85FE00D4CF10 /* WFSilTICKR.png */; };
+		EC0A77841A2E85FE00D4CF10 /* WFSilTICKR@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A771F1A2E85FE00D4CF10 /* WFSilTICKR@2x.png */; };
+		EC0A77851A2E85FE00D4CF10 /* WFSilTimex-30.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77201A2E85FE00D4CF10 /* WFSilTimex-30.png */; };
+		EC0A77861A2E85FE00D4CF10 /* WFSilTimex-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77211A2E85FE00D4CF10 /* WFSilTimex-30@2x.png */; };
+		EC0A77871A2E85FE00D4CF10 /* WFSilTimex.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77221A2E85FE00D4CF10 /* WFSilTimex.png */; };
+		EC0A77881A2E85FE00D4CF10 /* WFSilTimex@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77231A2E85FE00D4CF10 /* WFSilTimex@2x.png */; };
+		EC0A778B1A2E863600D4CF10 /* WFSignalStrengthView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A778A1A2E863600D4CF10 /* WFSignalStrengthView.m */; };
+		EC0A77971A2E8EC200D4CF10 /* ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A77961A2E8EC200D4CF10 /* ImageHelper.m */; };
+		EC0A779A1A2E8ECD00D4CF10 /* UIColor+WFHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A77991A2E8ECD00D4CF10 /* UIColor+WFHelpers.m */; };
+		EC0A77B11A2EA43F00D4CF10 /* WFSensorIconAltimeter.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A779F1A2EA43F00D4CF10 /* WFSensorIconAltimeter.png */; };
+		EC0A77B21A2EA43F00D4CF10 /* WFSensorIconAltimeter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A01A2EA43F00D4CF10 /* WFSensorIconAltimeter@2x.png */; };
+		EC0A77B31A2EA43F00D4CF10 /* WFSensorIconCadenceOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A11A2EA43F00D4CF10 /* WFSensorIconCadenceOff.png */; };
+		EC0A77B41A2EA43F00D4CF10 /* WFSensorIconCadenceOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A21A2EA43F00D4CF10 /* WFSensorIconCadenceOff@2x.png */; };
+		EC0A77B51A2EA43F00D4CF10 /* WFSensorIconGPSOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A31A2EA43F00D4CF10 /* WFSensorIconGPSOff.png */; };
+		EC0A77B61A2EA43F00D4CF10 /* WFSensorIconGPSOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A41A2EA43F00D4CF10 /* WFSensorIconGPSOff@2x.png */; };
+		EC0A77B71A2EA43F00D4CF10 /* WFSensorIconHROff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A51A2EA43F00D4CF10 /* WFSensorIconHROff.png */; };
+		EC0A77B81A2EA43F00D4CF10 /* WFSensorIconHROff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A61A2EA43F00D4CF10 /* WFSensorIconHROff@2x.png */; };
+		EC0A77B91A2EA43F00D4CF10 /* WFSensorIconMotion.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A71A2EA43F00D4CF10 /* WFSensorIconMotion.png */; };
+		EC0A77BA1A2EA43F00D4CF10 /* WFSensorIconMotion@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A81A2EA43F00D4CF10 /* WFSensorIconMotion@2x.png */; };
+		EC0A77BB1A2EA43F00D4CF10 /* WFSensorIconPowerOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77A91A2EA43F00D4CF10 /* WFSensorIconPowerOff.png */; };
+		EC0A77BC1A2EA43F00D4CF10 /* WFSensorIconPowerOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AA1A2EA43F00D4CF10 /* WFSensorIconPowerOff@2x.png */; };
+		EC0A77BD1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AB1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff.png */; };
+		EC0A77BE1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AC1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff@2x.png */; };
+		EC0A77BF1A2EA43F00D4CF10 /* WFSensorIconSpeedOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AD1A2EA43F00D4CF10 /* WFSensorIconSpeedOff.png */; };
+		EC0A77C01A2EA43F00D4CF10 /* WFSensorIconSpeedOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AE1A2EA43F00D4CF10 /* WFSensorIconSpeedOff@2x.png */; };
+		EC0A77C11A2EA43F00D4CF10 /* WFSensorIconStrideOff.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77AF1A2EA43F00D4CF10 /* WFSensorIconStrideOff.png */; };
+		EC0A77C21A2EA43F00D4CF10 /* WFSensorIconStrideOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77B01A2EA43F00D4CF10 /* WFSensorIconStrideOff@2x.png */; };
+		EC0A77CF1A2ED01400D4CF10 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77C51A2ED01400D4CF10 /* Icon-76.png */; };
+		EC0A77D01A2ED01400D4CF10 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77C61A2ED01400D4CF10 /* Icon-76@2x.png */; };
+		EC0A77D11A2ED01400D4CF10 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77C71A2ED01400D4CF10 /* Icon-Small-50.png */; };
+		EC0A77D21A2ED01400D4CF10 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77C81A2ED01400D4CF10 /* Icon-Small-50@2x.png */; };
+		EC0A77D31A2ED01400D4CF10 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77C91A2ED01400D4CF10 /* Icon-Small.png */; };
+		EC0A77D41A2ED01400D4CF10 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77CA1A2ED01400D4CF10 /* Icon-Small@2x.png */; };
+		EC0A77D51A2ED01400D4CF10 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77CB1A2ED01400D4CF10 /* Icon.png */; };
+		EC0A77D61A2ED01400D4CF10 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77CC1A2ED01400D4CF10 /* Icon@2x.png */; };
+		EC0A77D71A2ED01400D4CF10 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77CD1A2ED01400D4CF10 /* iTunesArtwork.png */; };
+		EC0A77D81A2ED01400D4CF10 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77CE1A2ED01400D4CF10 /* iTunesArtwork@2x.png */; };
+		EC0A77DD1A2ED91A00D4CF10 /* SensorConnectionHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A77DC1A2ED91A00D4CF10 /* SensorConnectionHelper.m */; };
+		EC0A77E01A2EDB7900D4CF10 /* SensorTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0A77DF1A2EDB7900D4CF10 /* SensorTVC.m */; };
+		EC0A77E31A2EE58800D4CF10 /* iPhonePoweredFitness.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77E11A2EE58800D4CF10 /* iPhonePoweredFitness.png */; };
+		EC0A77E41A2EE58800D4CF10 /* iPhonePoweredFitness@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77E21A2EE58800D4CF10 /* iPhonePoweredFitness@2x.png */; };
+		EC0A77EB1A2FDE0B00D4CF10 /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC0A77EA1A2FDE0B00D4CF10 /* ReadMe.txt */; };
+		EC2583B61A6E81F000EA4F0B /* WFConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2583B51A6E81F000EA4F0B /* WFConnector.framework */; };
+		ECE81F601BA5DDB300100510 /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE81F5F1BA5DDB300100510 /* libstdc++.6.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC0A76931A2E790F00D4CF10 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC0A76711A2E790F00D4CF10 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC0A76781A2E790F00D4CF10;
+			remoteInfo = WahooDemoV2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC01EF0E1B7D6C4F00016380 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EC0A76791A2E790F00D4CF10 /* WahooDemoV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WahooDemoV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC0A767D1A2E790F00D4CF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC0A767E1A2E790F00D4CF10 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EC0A76801A2E790F00D4CF10 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EC0A76811A2E790F00D4CF10 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EC0A76831A2E790F00D4CF10 /* MenuTVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuTVC.h; sourceTree = "<group>"; };
+		EC0A76841A2E790F00D4CF10 /* MenuTVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuTVC.m; sourceTree = "<group>"; };
+		EC0A76871A2E790F00D4CF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC0A768C1A2E790F00D4CF10 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		EC0A76921A2E790F00D4CF10 /* WahooDemoV2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WahooDemoV2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC0A76971A2E790F00D4CF10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC0A76981A2E790F00D4CF10 /* WahooDemoV2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WahooDemoV2Tests.m; sourceTree = "<group>"; };
+		EC0A76A41A2E7A2700D4CF10 /* DiscoveryTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryTVC.h; sourceTree = "<group>"; };
+		EC0A76A51A2E7A2700D4CF10 /* DiscoveryTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryTVC.m; sourceTree = "<group>"; };
+		EC0A76A71A2E7A7800D4CF10 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		EC0A76A91A2E7A8000D4CF10 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		EC0A76B21A2E7B6400D4CF10 /* SensorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorCell.h; sourceTree = "<group>"; };
+		EC0A76B31A2E7B6400D4CF10 /* SensorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorCell.m; sourceTree = "<group>"; };
+		EC0A76B61A2E859D00D4CF10 /* WFBtleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFBtleLogo.png; sourceTree = "<group>"; };
+		EC0A76B71A2E859D00D4CF10 /* WFBtleLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFBtleLogo@2x.png"; sourceTree = "<group>"; };
+		EC0A76BA1A2E85C500D4CF10 /* WFANT+.logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFANT+.logo.png"; sourceTree = "<group>"; };
+		EC0A76BB1A2E85C500D4CF10 /* WFANT+.logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFANT+.logo@2x.png"; sourceTree = "<group>"; };
+		EC0A76BF1A2E85FE00D4CF10 /* WFSilAntFootpod-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntFootpod-30.png"; sourceTree = "<group>"; };
+		EC0A76C01A2E85FE00D4CF10 /* WFSilAntFootpod-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntFootpod-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76C11A2E85FE00D4CF10 /* WFSilAntFootpod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilAntFootpod.png; sourceTree = "<group>"; };
+		EC0A76C21A2E85FE00D4CF10 /* WFSilAntFootpod@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntFootpod@2x.png"; sourceTree = "<group>"; };
+		EC0A76C31A2E85FE00D4CF10 /* WFSilAntHR-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntHR-30.png"; sourceTree = "<group>"; };
+		EC0A76C41A2E85FE00D4CF10 /* WFSilAntHR-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntHR-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76C51A2E85FE00D4CF10 /* WFSilAntHR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilAntHR.png; sourceTree = "<group>"; };
+		EC0A76C61A2E85FE00D4CF10 /* WFSilAntHR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntHR@2x.png"; sourceTree = "<group>"; };
+		EC0A76C71A2E85FE00D4CF10 /* WFSilAntSC-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntSC-30.png"; sourceTree = "<group>"; };
+		EC0A76C81A2E85FE00D4CF10 /* WFSilAntSC-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntSC-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76C91A2E85FE00D4CF10 /* WFSilAntSC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilAntSC.png; sourceTree = "<group>"; };
+		EC0A76CA1A2E85FE00D4CF10 /* WFSilAntSC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilAntSC@2x.png"; sourceTree = "<group>"; };
+		EC0A76CB1A2E85FE00D4CF10 /* WFSilBalance-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBalance-30.png"; sourceTree = "<group>"; };
+		EC0A76CC1A2E85FE00D4CF10 /* WFSilBalance-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBalance-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76CD1A2E85FE00D4CF10 /* WFSilBalance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilBalance.png; sourceTree = "<group>"; };
+		EC0A76CE1A2E85FE00D4CF10 /* WFSilBalance@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBalance@2x.png"; sourceTree = "<group>"; };
+		EC0A76CF1A2E85FE00D4CF10 /* WFSilBlueHR-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueHR-30.png"; sourceTree = "<group>"; };
+		EC0A76D01A2E85FE00D4CF10 /* WFSilBlueHR-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueHR-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76D11A2E85FE00D4CF10 /* WFSilBlueHR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilBlueHR.png; sourceTree = "<group>"; };
+		EC0A76D21A2E85FE00D4CF10 /* WFSilBlueHR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueHR@2x.png"; sourceTree = "<group>"; };
+		EC0A76D31A2E85FE00D4CF10 /* WFSilBlueSC-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueSC-30.png"; sourceTree = "<group>"; };
+		EC0A76D41A2E85FE00D4CF10 /* WFSilBlueSC-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueSC-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76D51A2E85FE00D4CF10 /* WFSilBlueSC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilBlueSC.png; sourceTree = "<group>"; };
+		EC0A76D61A2E85FE00D4CF10 /* WFSilBlueSC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilBlueSC@2x.png"; sourceTree = "<group>"; };
+		EC0A76D71A2E85FE00D4CF10 /* WFSilCasioSTB1000-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilCasioSTB1000-30.png"; sourceTree = "<group>"; };
+		EC0A76D81A2E85FE00D4CF10 /* WFSilCasioSTB1000-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilCasioSTB1000-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76D91A2E85FE00D4CF10 /* WFSilCasioSTB1000.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilCasioSTB1000.png; sourceTree = "<group>"; };
+		EC0A76DA1A2E85FE00D4CF10 /* WFSilCasioSTB1000@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilCasioSTB1000@2x.png"; sourceTree = "<group>"; };
+		EC0A76DB1A2E85FE00D4CF10 /* WFSilEcho-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilEcho-30.png"; sourceTree = "<group>"; };
+		EC0A76DC1A2E85FE00D4CF10 /* WFSilEcho-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilEcho-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76DD1A2E85FE00D4CF10 /* WFSilEcho.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilEcho.png; sourceTree = "<group>"; };
+		EC0A76DE1A2E85FE00D4CF10 /* WFSilEcho@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilEcho@2x.png"; sourceTree = "<group>"; };
+		EC0A76DF1A2E85FE00D4CF10 /* WFSilFisicaKey-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilFisicaKey-30.png"; sourceTree = "<group>"; };
+		EC0A76E01A2E85FE00D4CF10 /* WFSilFisicaKey-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilFisicaKey-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76E11A2E85FE00D4CF10 /* WFSilFisicaKey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilFisicaKey.png; sourceTree = "<group>"; };
+		EC0A76E21A2E85FE00D4CF10 /* WFSilFisicaKey@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilFisicaKey@2x.png"; sourceTree = "<group>"; };
+		EC0A76E31A2E85FE00D4CF10 /* WFSilGenericCadence-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericCadence-30.png"; sourceTree = "<group>"; };
+		EC0A76E41A2E85FE00D4CF10 /* WFSilGenericCadence-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericCadence-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76E51A2E85FE00D4CF10 /* WFSilGenericCadence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericCadence.png; sourceTree = "<group>"; };
+		EC0A76E61A2E85FE00D4CF10 /* WFSilGenericCadence@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericCadence@2x.png"; sourceTree = "<group>"; };
+		EC0A76E71A2E85FE00D4CF10 /* WFSilGenericFootpod-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericFootpod-30.png"; sourceTree = "<group>"; };
+		EC0A76E81A2E85FE00D4CF10 /* WFSilGenericFootpod-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericFootpod-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76E91A2E85FE00D4CF10 /* WFSilGenericFootpod.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericFootpod.png; sourceTree = "<group>"; };
+		EC0A76EA1A2E85FE00D4CF10 /* WFSilGenericFootpod@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericFootpod@2x.png"; sourceTree = "<group>"; };
+		EC0A76EB1A2E85FE00D4CF10 /* WFSilGenericHR-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericHR-30.png"; sourceTree = "<group>"; };
+		EC0A76EC1A2E85FE00D4CF10 /* WFSilGenericHR-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericHR-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76ED1A2E85FE00D4CF10 /* WFSilGenericHR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericHR.png; sourceTree = "<group>"; };
+		EC0A76EE1A2E85FE00D4CF10 /* WFSilGenericHR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericHR@2x.png"; sourceTree = "<group>"; };
+		EC0A76EF1A2E85FE00D4CF10 /* WFSilGenericPower-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericPower-30.png"; sourceTree = "<group>"; };
+		EC0A76F01A2E85FE00D4CF10 /* WFSilGenericPower-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericPower-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76F11A2E85FE00D4CF10 /* WFSilGenericPower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericPower.png; sourceTree = "<group>"; };
+		EC0A76F21A2E85FE00D4CF10 /* WFSilGenericPower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericPower@2x.png"; sourceTree = "<group>"; };
+		EC0A76F31A2E85FE00D4CF10 /* WFSilGenericSensor-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSensor-30.png"; sourceTree = "<group>"; };
+		EC0A76F41A2E85FE00D4CF10 /* WFSilGenericSensor-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSensor-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76F51A2E85FE00D4CF10 /* WFSilGenericSensor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericSensor.png; sourceTree = "<group>"; };
+		EC0A76F61A2E85FE00D4CF10 /* WFSilGenericSensor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSensor@2x.png"; sourceTree = "<group>"; };
+		EC0A76F71A2E85FE00D4CF10 /* WFSilGenericSpeed-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSpeed-30.png"; sourceTree = "<group>"; };
+		EC0A76F81A2E85FE00D4CF10 /* WFSilGenericSpeed-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSpeed-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76F91A2E85FE00D4CF10 /* WFSilGenericSpeed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilGenericSpeed.png; sourceTree = "<group>"; };
+		EC0A76FA1A2E85FE00D4CF10 /* WFSilGenericSpeed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilGenericSpeed@2x.png"; sourceTree = "<group>"; };
+		EC0A76FB1A2E85FE00D4CF10 /* WFSilKICKR-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilKICKR-30.png"; sourceTree = "<group>"; };
+		EC0A76FC1A2E85FE00D4CF10 /* WFSilKICKR-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilKICKR-30@2x.png"; sourceTree = "<group>"; };
+		EC0A76FD1A2E85FE00D4CF10 /* WFSilKICKR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilKICKR.png; sourceTree = "<group>"; };
+		EC0A76FE1A2E85FE00D4CF10 /* WFSilKICKR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilKICKR@2x.png"; sourceTree = "<group>"; };
+		EC0A76FF1A2E85FE00D4CF10 /* WFSilPowerCrankset-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerCrankset-30.png"; sourceTree = "<group>"; };
+		EC0A77001A2E85FE00D4CF10 /* WFSilPowerCrankset-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerCrankset-30@2x.png"; sourceTree = "<group>"; };
+		EC0A77011A2E85FE00D4CF10 /* WFSilPowerCrankset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPowerCrankset.png; sourceTree = "<group>"; };
+		EC0A77021A2E85FE00D4CF10 /* WFSilPowerCrankset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerCrankset@2x.png"; sourceTree = "<group>"; };
+		EC0A77031A2E85FE00D4CF10 /* WFSilPowerDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPowerDefault.png; sourceTree = "<group>"; };
+		EC0A77041A2E85FE00D4CF10 /* WFSilPowerHub-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerHub-30.png"; sourceTree = "<group>"; };
+		EC0A77051A2E85FE00D4CF10 /* WFSilPowerHub-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerHub-30@2x.png"; sourceTree = "<group>"; };
+		EC0A77061A2E85FE00D4CF10 /* WFSilPowerHub.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPowerHub.png; sourceTree = "<group>"; };
+		EC0A77071A2E85FE00D4CF10 /* WFSilPowerHub@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerHub@2x.png"; sourceTree = "<group>"; };
+		EC0A77081A2E85FE00D4CF10 /* WFSilPowerPedal-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerPedal-30.png"; sourceTree = "<group>"; };
+		EC0A77091A2E85FE00D4CF10 /* WFSilPowerPedal-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerPedal-30@2x.png"; sourceTree = "<group>"; };
+		EC0A770A1A2E85FE00D4CF10 /* WFSilPowerPedal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPowerPedal.png; sourceTree = "<group>"; };
+		EC0A770B1A2E85FE00D4CF10 /* WFSilPowerPedal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerPedal@2x.png"; sourceTree = "<group>"; };
+		EC0A770C1A2E85FE00D4CF10 /* WFSilPowerStages-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerStages-30.png"; sourceTree = "<group>"; };
+		EC0A770D1A2E85FE00D4CF10 /* WFSilPowerStages-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerStages-30@2x.png"; sourceTree = "<group>"; };
+		EC0A770E1A2E85FE00D4CF10 /* WFSilPowerStages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPowerStages.png; sourceTree = "<group>"; };
+		EC0A770F1A2E85FE00D4CF10 /* WFSilPowerStages@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPowerStages@2x.png"; sourceTree = "<group>"; };
+		EC0A77101A2E85FE00D4CF10 /* WFSilPROTKT-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPROTKT-30.png"; sourceTree = "<group>"; };
+		EC0A77111A2E85FE00D4CF10 /* WFSilPROTKT-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPROTKT-30@2x.png"; sourceTree = "<group>"; };
+		EC0A77121A2E85FE00D4CF10 /* WFSilPROTKT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilPROTKT.png; sourceTree = "<group>"; };
+		EC0A77131A2E85FE00D4CF10 /* WFSilPROTKT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilPROTKT@2x.png"; sourceTree = "<group>"; };
+		EC0A77141A2E85FE00D4CF10 /* WFSilRFLKT-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRFLKT-30.png"; sourceTree = "<group>"; };
+		EC0A77151A2E85FE00D4CF10 /* WFSilRFLKT-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRFLKT-30@2x.png"; sourceTree = "<group>"; };
+		EC0A77161A2E85FE00D4CF10 /* WFSilRFLKT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilRFLKT.png; sourceTree = "<group>"; };
+		EC0A77171A2E85FE00D4CF10 /* WFSilRFLKT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRFLKT@2x.png"; sourceTree = "<group>"; };
+		EC0A77181A2E85FE00D4CF10 /* WFSilRPM-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRPM-30.png"; sourceTree = "<group>"; };
+		EC0A77191A2E85FE00D4CF10 /* WFSilRPM-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRPM-30@2x.png"; sourceTree = "<group>"; };
+		EC0A771A1A2E85FE00D4CF10 /* WFSilRPM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilRPM.png; sourceTree = "<group>"; };
+		EC0A771B1A2E85FE00D4CF10 /* WFSilRPM@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilRPM@2x.png"; sourceTree = "<group>"; };
+		EC0A771C1A2E85FE00D4CF10 /* WFSilTICKR-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTICKR-30.png"; sourceTree = "<group>"; };
+		EC0A771D1A2E85FE00D4CF10 /* WFSilTICKR-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTICKR-30@2x.png"; sourceTree = "<group>"; };
+		EC0A771E1A2E85FE00D4CF10 /* WFSilTICKR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilTICKR.png; sourceTree = "<group>"; };
+		EC0A771F1A2E85FE00D4CF10 /* WFSilTICKR@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTICKR@2x.png"; sourceTree = "<group>"; };
+		EC0A77201A2E85FE00D4CF10 /* WFSilTimex-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTimex-30.png"; sourceTree = "<group>"; };
+		EC0A77211A2E85FE00D4CF10 /* WFSilTimex-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTimex-30@2x.png"; sourceTree = "<group>"; };
+		EC0A77221A2E85FE00D4CF10 /* WFSilTimex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSilTimex.png; sourceTree = "<group>"; };
+		EC0A77231A2E85FE00D4CF10 /* WFSilTimex@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSilTimex@2x.png"; sourceTree = "<group>"; };
+		EC0A77891A2E863600D4CF10 /* WFSignalStrengthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WFSignalStrengthView.h; sourceTree = "<group>"; };
+		EC0A778A1A2E863600D4CF10 /* WFSignalStrengthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WFSignalStrengthView.m; sourceTree = "<group>"; };
+		EC0A77951A2E8EC200D4CF10 /* ImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageHelper.h; sourceTree = "<group>"; };
+		EC0A77961A2E8EC200D4CF10 /* ImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageHelper.m; sourceTree = "<group>"; };
+		EC0A77981A2E8ECD00D4CF10 /* UIColor+WFHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WFHelpers.h"; sourceTree = "<group>"; };
+		EC0A77991A2E8ECD00D4CF10 /* UIColor+WFHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WFHelpers.m"; sourceTree = "<group>"; };
+		EC0A779F1A2EA43F00D4CF10 /* WFSensorIconAltimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconAltimeter.png; sourceTree = "<group>"; };
+		EC0A77A01A2EA43F00D4CF10 /* WFSensorIconAltimeter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconAltimeter@2x.png"; sourceTree = "<group>"; };
+		EC0A77A11A2EA43F00D4CF10 /* WFSensorIconCadenceOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconCadenceOff.png; sourceTree = "<group>"; };
+		EC0A77A21A2EA43F00D4CF10 /* WFSensorIconCadenceOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconCadenceOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77A31A2EA43F00D4CF10 /* WFSensorIconGPSOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconGPSOff.png; sourceTree = "<group>"; };
+		EC0A77A41A2EA43F00D4CF10 /* WFSensorIconGPSOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconGPSOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77A51A2EA43F00D4CF10 /* WFSensorIconHROff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconHROff.png; sourceTree = "<group>"; };
+		EC0A77A61A2EA43F00D4CF10 /* WFSensorIconHROff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconHROff@2x.png"; sourceTree = "<group>"; };
+		EC0A77A71A2EA43F00D4CF10 /* WFSensorIconMotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconMotion.png; sourceTree = "<group>"; };
+		EC0A77A81A2EA43F00D4CF10 /* WFSensorIconMotion@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconMotion@2x.png"; sourceTree = "<group>"; };
+		EC0A77A91A2EA43F00D4CF10 /* WFSensorIconPowerOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconPowerOff.png; sourceTree = "<group>"; };
+		EC0A77AA1A2EA43F00D4CF10 /* WFSensorIconPowerOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconPowerOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77AB1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconRFLKTOff.png; sourceTree = "<group>"; };
+		EC0A77AC1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconRFLKTOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77AD1A2EA43F00D4CF10 /* WFSensorIconSpeedOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconSpeedOff.png; sourceTree = "<group>"; };
+		EC0A77AE1A2EA43F00D4CF10 /* WFSensorIconSpeedOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconSpeedOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77AF1A2EA43F00D4CF10 /* WFSensorIconStrideOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WFSensorIconStrideOff.png; sourceTree = "<group>"; };
+		EC0A77B01A2EA43F00D4CF10 /* WFSensorIconStrideOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WFSensorIconStrideOff@2x.png"; sourceTree = "<group>"; };
+		EC0A77C51A2ED01400D4CF10 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		EC0A77C61A2ED01400D4CF10 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		EC0A77C71A2ED01400D4CF10 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		EC0A77C81A2ED01400D4CF10 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		EC0A77C91A2ED01400D4CF10 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		EC0A77CA1A2ED01400D4CF10 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		EC0A77CB1A2ED01400D4CF10 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		EC0A77CC1A2ED01400D4CF10 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		EC0A77CD1A2ED01400D4CF10 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		EC0A77CE1A2ED01400D4CF10 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		EC0A77DB1A2ED91A00D4CF10 /* SensorConnectionHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorConnectionHelper.h; sourceTree = "<group>"; };
+		EC0A77DC1A2ED91A00D4CF10 /* SensorConnectionHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorConnectionHelper.m; sourceTree = "<group>"; };
+		EC0A77DE1A2EDB7900D4CF10 /* SensorTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorTVC.h; sourceTree = "<group>"; };
+		EC0A77DF1A2EDB7900D4CF10 /* SensorTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorTVC.m; sourceTree = "<group>"; };
+		EC0A77E11A2EE58800D4CF10 /* iPhonePoweredFitness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhonePoweredFitness.png; sourceTree = "<group>"; };
+		EC0A77E21A2EE58800D4CF10 /* iPhonePoweredFitness@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhonePoweredFitness@2x.png"; sourceTree = "<group>"; };
+		EC0A77EA1A2FDE0B00D4CF10 /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
+		EC2583B51A6E81F000EA4F0B /* WFConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WFConnector.framework; path = ../dependencies/WFConnector.framework; sourceTree = "<group>"; };
+		ECE81F5F1BA5DDB300100510 /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC0A76761A2E790F00D4CF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECE81F601BA5DDB300100510 /* libstdc++.6.dylib in Frameworks */,
+				EC01EF0F1B7D6C4F00016380 /* SystemConfiguration.framework in Frameworks */,
+				EC2583B61A6E81F000EA4F0B /* WFConnector.framework in Frameworks */,
+				EC0A76AF1A2E7ABA00D4CF10 /* ExternalAccessory.framework in Frameworks */,
+				EC0A76AE1A2E7AB400D4CF10 /* CoreBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC0A768F1A2E790F00D4CF10 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC0A76701A2E790F00D4CF10 = {
+			isa = PBXGroup;
+			children = (
+				EC0A77EA1A2FDE0B00D4CF10 /* ReadMe.txt */,
+				EC0A76AB1A2E7A8400D4CF10 /* Frameworks */,
+				EC0A767B1A2E790F00D4CF10 /* WahooDemoV2 */,
+				EC0A76951A2E790F00D4CF10 /* WahooDemoV2Tests */,
+				EC0A767A1A2E790F00D4CF10 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC0A767A1A2E790F00D4CF10 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76791A2E790F00D4CF10 /* WahooDemoV2.app */,
+				EC0A76921A2E790F00D4CF10 /* WahooDemoV2Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC0A767B1A2E790F00D4CF10 /* WahooDemoV2 */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A77941A2E8EA400D4CF10 /* Helpers */,
+				EC0A76A31A2E79C100D4CF10 /* Discovery */,
+				EC0A76831A2E790F00D4CF10 /* MenuTVC.h */,
+				EC0A76841A2E790F00D4CF10 /* MenuTVC.m */,
+				EC0A76861A2E790F00D4CF10 /* Main.storyboard */,
+				EC0A768B1A2E790F00D4CF10 /* LaunchScreen.xib */,
+				EC0A76801A2E790F00D4CF10 /* AppDelegate.h */,
+				EC0A76811A2E790F00D4CF10 /* AppDelegate.m */,
+				EC0A76B51A2E856600D4CF10 /* Resources */,
+				EC0A767C1A2E790F00D4CF10 /* Supporting Files */,
+			);
+			path = WahooDemoV2;
+			sourceTree = "<group>";
+		};
+		EC0A767C1A2E790F00D4CF10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A767D1A2E790F00D4CF10 /* Info.plist */,
+				EC0A767E1A2E790F00D4CF10 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC0A76951A2E790F00D4CF10 /* WahooDemoV2Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76981A2E790F00D4CF10 /* WahooDemoV2Tests.m */,
+				EC0A76961A2E790F00D4CF10 /* Supporting Files */,
+			);
+			path = WahooDemoV2Tests;
+			sourceTree = "<group>";
+		};
+		EC0A76961A2E790F00D4CF10 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76971A2E790F00D4CF10 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC0A76A31A2E79C100D4CF10 /* Discovery */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A778F1A2E865100D4CF10 /* views */,
+				EC0A76A41A2E7A2700D4CF10 /* DiscoveryTVC.h */,
+				EC0A76A51A2E7A2700D4CF10 /* DiscoveryTVC.m */,
+				EC0A77DE1A2EDB7900D4CF10 /* SensorTVC.h */,
+				EC0A77DF1A2EDB7900D4CF10 /* SensorTVC.m */,
+			);
+			path = Discovery;
+			sourceTree = "<group>";
+		};
+		EC0A76AB1A2E7A8400D4CF10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECE81F5F1BA5DDB300100510 /* libstdc++.6.dylib */,
+				EC01EF0E1B7D6C4F00016380 /* SystemConfiguration.framework */,
+				EC2583B51A6E81F000EA4F0B /* WFConnector.framework */,
+				EC0A76A91A2E7A8000D4CF10 /* ExternalAccessory.framework */,
+				EC0A76A71A2E7A7800D4CF10 /* CoreBluetooth.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC0A76B51A2E856600D4CF10 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A77E11A2EE58800D4CF10 /* iPhonePoweredFitness.png */,
+				EC0A77E21A2EE58800D4CF10 /* iPhonePoweredFitness@2x.png */,
+				EC0A77C41A2ED00900D4CF10 /* appIcon */,
+				EC0A77C31A2ECFF200D4CF10 /* dataIcons */,
+				EC0A77901A2E8A6700D4CF10 /* icons */,
+				EC0A76BE1A2E85F300D4CF10 /* sensors */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		EC0A76BE1A2E85F300D4CF10 /* sensors */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76BF1A2E85FE00D4CF10 /* WFSilAntFootpod-30.png */,
+				EC0A76C01A2E85FE00D4CF10 /* WFSilAntFootpod-30@2x.png */,
+				EC0A76C11A2E85FE00D4CF10 /* WFSilAntFootpod.png */,
+				EC0A76C21A2E85FE00D4CF10 /* WFSilAntFootpod@2x.png */,
+				EC0A76C31A2E85FE00D4CF10 /* WFSilAntHR-30.png */,
+				EC0A76C41A2E85FE00D4CF10 /* WFSilAntHR-30@2x.png */,
+				EC0A76C51A2E85FE00D4CF10 /* WFSilAntHR.png */,
+				EC0A76C61A2E85FE00D4CF10 /* WFSilAntHR@2x.png */,
+				EC0A76C71A2E85FE00D4CF10 /* WFSilAntSC-30.png */,
+				EC0A76C81A2E85FE00D4CF10 /* WFSilAntSC-30@2x.png */,
+				EC0A76C91A2E85FE00D4CF10 /* WFSilAntSC.png */,
+				EC0A76CA1A2E85FE00D4CF10 /* WFSilAntSC@2x.png */,
+				EC0A76CB1A2E85FE00D4CF10 /* WFSilBalance-30.png */,
+				EC0A76CC1A2E85FE00D4CF10 /* WFSilBalance-30@2x.png */,
+				EC0A76CD1A2E85FE00D4CF10 /* WFSilBalance.png */,
+				EC0A76CE1A2E85FE00D4CF10 /* WFSilBalance@2x.png */,
+				EC0A76CF1A2E85FE00D4CF10 /* WFSilBlueHR-30.png */,
+				EC0A76D01A2E85FE00D4CF10 /* WFSilBlueHR-30@2x.png */,
+				EC0A76D11A2E85FE00D4CF10 /* WFSilBlueHR.png */,
+				EC0A76D21A2E85FE00D4CF10 /* WFSilBlueHR@2x.png */,
+				EC0A76D31A2E85FE00D4CF10 /* WFSilBlueSC-30.png */,
+				EC0A76D41A2E85FE00D4CF10 /* WFSilBlueSC-30@2x.png */,
+				EC0A76D51A2E85FE00D4CF10 /* WFSilBlueSC.png */,
+				EC0A76D61A2E85FE00D4CF10 /* WFSilBlueSC@2x.png */,
+				EC0A76D71A2E85FE00D4CF10 /* WFSilCasioSTB1000-30.png */,
+				EC0A76D81A2E85FE00D4CF10 /* WFSilCasioSTB1000-30@2x.png */,
+				EC0A76D91A2E85FE00D4CF10 /* WFSilCasioSTB1000.png */,
+				EC0A76DA1A2E85FE00D4CF10 /* WFSilCasioSTB1000@2x.png */,
+				EC0A76DB1A2E85FE00D4CF10 /* WFSilEcho-30.png */,
+				EC0A76DC1A2E85FE00D4CF10 /* WFSilEcho-30@2x.png */,
+				EC0A76DD1A2E85FE00D4CF10 /* WFSilEcho.png */,
+				EC0A76DE1A2E85FE00D4CF10 /* WFSilEcho@2x.png */,
+				EC0A76DF1A2E85FE00D4CF10 /* WFSilFisicaKey-30.png */,
+				EC0A76E01A2E85FE00D4CF10 /* WFSilFisicaKey-30@2x.png */,
+				EC0A76E11A2E85FE00D4CF10 /* WFSilFisicaKey.png */,
+				EC0A76E21A2E85FE00D4CF10 /* WFSilFisicaKey@2x.png */,
+				EC0A76E31A2E85FE00D4CF10 /* WFSilGenericCadence-30.png */,
+				EC0A76E41A2E85FE00D4CF10 /* WFSilGenericCadence-30@2x.png */,
+				EC0A76E51A2E85FE00D4CF10 /* WFSilGenericCadence.png */,
+				EC0A76E61A2E85FE00D4CF10 /* WFSilGenericCadence@2x.png */,
+				EC0A76E71A2E85FE00D4CF10 /* WFSilGenericFootpod-30.png */,
+				EC0A76E81A2E85FE00D4CF10 /* WFSilGenericFootpod-30@2x.png */,
+				EC0A76E91A2E85FE00D4CF10 /* WFSilGenericFootpod.png */,
+				EC0A76EA1A2E85FE00D4CF10 /* WFSilGenericFootpod@2x.png */,
+				EC0A76EB1A2E85FE00D4CF10 /* WFSilGenericHR-30.png */,
+				EC0A76EC1A2E85FE00D4CF10 /* WFSilGenericHR-30@2x.png */,
+				EC0A76ED1A2E85FE00D4CF10 /* WFSilGenericHR.png */,
+				EC0A76EE1A2E85FE00D4CF10 /* WFSilGenericHR@2x.png */,
+				EC0A76EF1A2E85FE00D4CF10 /* WFSilGenericPower-30.png */,
+				EC0A76F01A2E85FE00D4CF10 /* WFSilGenericPower-30@2x.png */,
+				EC0A76F11A2E85FE00D4CF10 /* WFSilGenericPower.png */,
+				EC0A76F21A2E85FE00D4CF10 /* WFSilGenericPower@2x.png */,
+				EC0A76F31A2E85FE00D4CF10 /* WFSilGenericSensor-30.png */,
+				EC0A76F41A2E85FE00D4CF10 /* WFSilGenericSensor-30@2x.png */,
+				EC0A76F51A2E85FE00D4CF10 /* WFSilGenericSensor.png */,
+				EC0A76F61A2E85FE00D4CF10 /* WFSilGenericSensor@2x.png */,
+				EC0A76F71A2E85FE00D4CF10 /* WFSilGenericSpeed-30.png */,
+				EC0A76F81A2E85FE00D4CF10 /* WFSilGenericSpeed-30@2x.png */,
+				EC0A76F91A2E85FE00D4CF10 /* WFSilGenericSpeed.png */,
+				EC0A76FA1A2E85FE00D4CF10 /* WFSilGenericSpeed@2x.png */,
+				EC0A76FB1A2E85FE00D4CF10 /* WFSilKICKR-30.png */,
+				EC0A76FC1A2E85FE00D4CF10 /* WFSilKICKR-30@2x.png */,
+				EC0A76FD1A2E85FE00D4CF10 /* WFSilKICKR.png */,
+				EC0A76FE1A2E85FE00D4CF10 /* WFSilKICKR@2x.png */,
+				EC0A76FF1A2E85FE00D4CF10 /* WFSilPowerCrankset-30.png */,
+				EC0A77001A2E85FE00D4CF10 /* WFSilPowerCrankset-30@2x.png */,
+				EC0A77011A2E85FE00D4CF10 /* WFSilPowerCrankset.png */,
+				EC0A77021A2E85FE00D4CF10 /* WFSilPowerCrankset@2x.png */,
+				EC0A77031A2E85FE00D4CF10 /* WFSilPowerDefault.png */,
+				EC0A77041A2E85FE00D4CF10 /* WFSilPowerHub-30.png */,
+				EC0A77051A2E85FE00D4CF10 /* WFSilPowerHub-30@2x.png */,
+				EC0A77061A2E85FE00D4CF10 /* WFSilPowerHub.png */,
+				EC0A77071A2E85FE00D4CF10 /* WFSilPowerHub@2x.png */,
+				EC0A77081A2E85FE00D4CF10 /* WFSilPowerPedal-30.png */,
+				EC0A77091A2E85FE00D4CF10 /* WFSilPowerPedal-30@2x.png */,
+				EC0A770A1A2E85FE00D4CF10 /* WFSilPowerPedal.png */,
+				EC0A770B1A2E85FE00D4CF10 /* WFSilPowerPedal@2x.png */,
+				EC0A770C1A2E85FE00D4CF10 /* WFSilPowerStages-30.png */,
+				EC0A770D1A2E85FE00D4CF10 /* WFSilPowerStages-30@2x.png */,
+				EC0A770E1A2E85FE00D4CF10 /* WFSilPowerStages.png */,
+				EC0A770F1A2E85FE00D4CF10 /* WFSilPowerStages@2x.png */,
+				EC0A77101A2E85FE00D4CF10 /* WFSilPROTKT-30.png */,
+				EC0A77111A2E85FE00D4CF10 /* WFSilPROTKT-30@2x.png */,
+				EC0A77121A2E85FE00D4CF10 /* WFSilPROTKT.png */,
+				EC0A77131A2E85FE00D4CF10 /* WFSilPROTKT@2x.png */,
+				EC0A77141A2E85FE00D4CF10 /* WFSilRFLKT-30.png */,
+				EC0A77151A2E85FE00D4CF10 /* WFSilRFLKT-30@2x.png */,
+				EC0A77161A2E85FE00D4CF10 /* WFSilRFLKT.png */,
+				EC0A77171A2E85FE00D4CF10 /* WFSilRFLKT@2x.png */,
+				EC0A77181A2E85FE00D4CF10 /* WFSilRPM-30.png */,
+				EC0A77191A2E85FE00D4CF10 /* WFSilRPM-30@2x.png */,
+				EC0A771A1A2E85FE00D4CF10 /* WFSilRPM.png */,
+				EC0A771B1A2E85FE00D4CF10 /* WFSilRPM@2x.png */,
+				EC0A771C1A2E85FE00D4CF10 /* WFSilTICKR-30.png */,
+				EC0A771D1A2E85FE00D4CF10 /* WFSilTICKR-30@2x.png */,
+				EC0A771E1A2E85FE00D4CF10 /* WFSilTICKR.png */,
+				EC0A771F1A2E85FE00D4CF10 /* WFSilTICKR@2x.png */,
+				EC0A77201A2E85FE00D4CF10 /* WFSilTimex-30.png */,
+				EC0A77211A2E85FE00D4CF10 /* WFSilTimex-30@2x.png */,
+				EC0A77221A2E85FE00D4CF10 /* WFSilTimex.png */,
+				EC0A77231A2E85FE00D4CF10 /* WFSilTimex@2x.png */,
+			);
+			name = sensors;
+			sourceTree = "<group>";
+		};
+		EC0A778F1A2E865100D4CF10 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76B21A2E7B6400D4CF10 /* SensorCell.h */,
+				EC0A76B31A2E7B6400D4CF10 /* SensorCell.m */,
+				EC0A77891A2E863600D4CF10 /* WFSignalStrengthView.h */,
+				EC0A778A1A2E863600D4CF10 /* WFSignalStrengthView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		EC0A77901A2E8A6700D4CF10 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A76BA1A2E85C500D4CF10 /* WFANT+.logo.png */,
+				EC0A76BB1A2E85C500D4CF10 /* WFANT+.logo@2x.png */,
+				EC0A76B61A2E859D00D4CF10 /* WFBtleLogo.png */,
+				EC0A76B71A2E859D00D4CF10 /* WFBtleLogo@2x.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		EC0A77941A2E8EA400D4CF10 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A77981A2E8ECD00D4CF10 /* UIColor+WFHelpers.h */,
+				EC0A77991A2E8ECD00D4CF10 /* UIColor+WFHelpers.m */,
+				EC0A77951A2E8EC200D4CF10 /* ImageHelper.h */,
+				EC0A77961A2E8EC200D4CF10 /* ImageHelper.m */,
+				EC0A77DB1A2ED91A00D4CF10 /* SensorConnectionHelper.h */,
+				EC0A77DC1A2ED91A00D4CF10 /* SensorConnectionHelper.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		EC0A77C31A2ECFF200D4CF10 /* dataIcons */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A779F1A2EA43F00D4CF10 /* WFSensorIconAltimeter.png */,
+				EC0A77A01A2EA43F00D4CF10 /* WFSensorIconAltimeter@2x.png */,
+				EC0A77A11A2EA43F00D4CF10 /* WFSensorIconCadenceOff.png */,
+				EC0A77A21A2EA43F00D4CF10 /* WFSensorIconCadenceOff@2x.png */,
+				EC0A77A31A2EA43F00D4CF10 /* WFSensorIconGPSOff.png */,
+				EC0A77A41A2EA43F00D4CF10 /* WFSensorIconGPSOff@2x.png */,
+				EC0A77A51A2EA43F00D4CF10 /* WFSensorIconHROff.png */,
+				EC0A77A61A2EA43F00D4CF10 /* WFSensorIconHROff@2x.png */,
+				EC0A77A71A2EA43F00D4CF10 /* WFSensorIconMotion.png */,
+				EC0A77A81A2EA43F00D4CF10 /* WFSensorIconMotion@2x.png */,
+				EC0A77A91A2EA43F00D4CF10 /* WFSensorIconPowerOff.png */,
+				EC0A77AA1A2EA43F00D4CF10 /* WFSensorIconPowerOff@2x.png */,
+				EC0A77AB1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff.png */,
+				EC0A77AC1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff@2x.png */,
+				EC0A77AD1A2EA43F00D4CF10 /* WFSensorIconSpeedOff.png */,
+				EC0A77AE1A2EA43F00D4CF10 /* WFSensorIconSpeedOff@2x.png */,
+				EC0A77AF1A2EA43F00D4CF10 /* WFSensorIconStrideOff.png */,
+				EC0A77B01A2EA43F00D4CF10 /* WFSensorIconStrideOff@2x.png */,
+			);
+			name = dataIcons;
+			sourceTree = "<group>";
+		};
+		EC0A77C41A2ED00900D4CF10 /* appIcon */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A77C51A2ED01400D4CF10 /* Icon-76.png */,
+				EC0A77C61A2ED01400D4CF10 /* Icon-76@2x.png */,
+				EC0A77C71A2ED01400D4CF10 /* Icon-Small-50.png */,
+				EC0A77C81A2ED01400D4CF10 /* Icon-Small-50@2x.png */,
+				EC0A77C91A2ED01400D4CF10 /* Icon-Small.png */,
+				EC0A77CA1A2ED01400D4CF10 /* Icon-Small@2x.png */,
+				EC0A77CB1A2ED01400D4CF10 /* Icon.png */,
+				EC0A77CC1A2ED01400D4CF10 /* Icon@2x.png */,
+				EC0A77CD1A2ED01400D4CF10 /* iTunesArtwork.png */,
+				EC0A77CE1A2ED01400D4CF10 /* iTunesArtwork@2x.png */,
+			);
+			name = appIcon;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC0A76781A2E790F00D4CF10 /* WahooDemoV2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC0A769C1A2E790F00D4CF10 /* Build configuration list for PBXNativeTarget "WahooDemoV2" */;
+			buildPhases = (
+				EC0A76751A2E790F00D4CF10 /* Sources */,
+				EC0A76761A2E790F00D4CF10 /* Frameworks */,
+				EC0A76771A2E790F00D4CF10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WahooDemoV2;
+			productName = WahooDemoV2;
+			productReference = EC0A76791A2E790F00D4CF10 /* WahooDemoV2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC0A76911A2E790F00D4CF10 /* WahooDemoV2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC0A769F1A2E790F00D4CF10 /* Build configuration list for PBXNativeTarget "WahooDemoV2Tests" */;
+			buildPhases = (
+				EC0A768E1A2E790F00D4CF10 /* Sources */,
+				EC0A768F1A2E790F00D4CF10 /* Frameworks */,
+				EC0A76901A2E790F00D4CF10 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC0A76941A2E790F00D4CF10 /* PBXTargetDependency */,
+			);
+			name = WahooDemoV2Tests;
+			productName = WahooDemoV2Tests;
+			productReference = EC0A76921A2E790F00D4CF10 /* WahooDemoV2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC0A76711A2E790F00D4CF10 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Wahoo Fitness";
+				TargetAttributes = {
+					EC0A76781A2E790F00D4CF10 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					EC0A76911A2E790F00D4CF10 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = EC0A76781A2E790F00D4CF10;
+					};
+				};
+			};
+			buildConfigurationList = EC0A76741A2E790F00D4CF10 /* Build configuration list for PBXProject "WahooDemoV2" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC0A76701A2E790F00D4CF10;
+			productRefGroup = EC0A767A1A2E790F00D4CF10 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC0A76781A2E790F00D4CF10 /* WahooDemoV2 */,
+				EC0A76911A2E790F00D4CF10 /* WahooDemoV2Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC0A76771A2E790F00D4CF10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC0A77671A2E85FE00D4CF10 /* WFSilPowerCrankset@2x.png in Resources */,
+				EC0A77351A2E85FE00D4CF10 /* WFSilBlueHR-30@2x.png in Resources */,
+				EC0A776C1A2E85FE00D4CF10 /* WFSilPowerHub@2x.png in Resources */,
+				EC0A77431A2E85FE00D4CF10 /* WFSilEcho@2x.png in Resources */,
+				EC0A77611A2E85FE00D4CF10 /* WFSilKICKR-30@2x.png in Resources */,
+				EC0A76881A2E790F00D4CF10 /* Main.storyboard in Resources */,
+				EC0A772E1A2E85FE00D4CF10 /* WFSilAntSC.png in Resources */,
+				EC0A77581A2E85FE00D4CF10 /* WFSilGenericSensor-30.png in Resources */,
+				EC0A77BC1A2EA43F00D4CF10 /* WFSensorIconPowerOff@2x.png in Resources */,
+				EC0A77B41A2EA43F00D4CF10 /* WFSensorIconCadenceOff@2x.png in Resources */,
+				EC0A77371A2E85FE00D4CF10 /* WFSilBlueHR@2x.png in Resources */,
+				EC0A77441A2E85FE00D4CF10 /* WFSilFisicaKey-30.png in Resources */,
+				EC0A775F1A2E85FE00D4CF10 /* WFSilGenericSpeed@2x.png in Resources */,
+				EC0A773E1A2E85FE00D4CF10 /* WFSilCasioSTB1000.png in Resources */,
+				EC0A77D01A2ED01400D4CF10 /* Icon-76@2x.png in Resources */,
+				EC0A77BF1A2EA43F00D4CF10 /* WFSensorIconSpeedOff.png in Resources */,
+				EC0A77C21A2EA43F00D4CF10 /* WFSensorIconStrideOff@2x.png in Resources */,
+				EC0A774A1A2E85FE00D4CF10 /* WFSilGenericCadence.png in Resources */,
+				EC0A77531A2E85FE00D4CF10 /* WFSilGenericHR@2x.png in Resources */,
+				EC0A77721A2E85FE00D4CF10 /* WFSilPowerStages-30@2x.png in Resources */,
+				EC0A77661A2E85FE00D4CF10 /* WFSilPowerCrankset.png in Resources */,
+				EC0A77D41A2ED01400D4CF10 /* Icon-Small@2x.png in Resources */,
+				EC0A77B61A2EA43F00D4CF10 /* WFSensorIconGPSOff@2x.png in Resources */,
+				EC0A77D21A2ED01400D4CF10 /* Icon-Small-50@2x.png in Resources */,
+				EC0A77701A2E85FE00D4CF10 /* WFSilPowerPedal@2x.png in Resources */,
+				EC0A77561A2E85FE00D4CF10 /* WFSilGenericPower.png in Resources */,
+				EC0A772F1A2E85FE00D4CF10 /* WFSilAntSC@2x.png in Resources */,
+				EC0A77411A2E85FE00D4CF10 /* WFSilEcho-30@2x.png in Resources */,
+				EC0A77C01A2EA43F00D4CF10 /* WFSensorIconSpeedOff@2x.png in Resources */,
+				EC0A772A1A2E85FE00D4CF10 /* WFSilAntHR.png in Resources */,
+				EC0A77741A2E85FE00D4CF10 /* WFSilPowerStages@2x.png in Resources */,
+				EC0A775D1A2E85FE00D4CF10 /* WFSilGenericSpeed-30@2x.png in Resources */,
+				EC0A775C1A2E85FE00D4CF10 /* WFSilGenericSpeed-30.png in Resources */,
+				EC0A77401A2E85FE00D4CF10 /* WFSilEcho-30.png in Resources */,
+				EC0A772C1A2E85FE00D4CF10 /* WFSilAntSC-30.png in Resources */,
+				EC0A77521A2E85FE00D4CF10 /* WFSilGenericHR.png in Resources */,
+				EC0A77B11A2EA43F00D4CF10 /* WFSensorIconAltimeter.png in Resources */,
+				EC0A77761A2E85FE00D4CF10 /* WFSilPROTKT-30@2x.png in Resources */,
+				EC0A77C11A2EA43F00D4CF10 /* WFSensorIconStrideOff.png in Resources */,
+				EC0A77651A2E85FE00D4CF10 /* WFSilPowerCrankset-30@2x.png in Resources */,
+				EC0A777B1A2E85FE00D4CF10 /* WFSilRFLKT.png in Resources */,
+				EC0A77CF1A2ED01400D4CF10 /* Icon-76.png in Resources */,
+				EC0A77881A2E85FE00D4CF10 /* WFSilTimex@2x.png in Resources */,
+				EC0A77731A2E85FE00D4CF10 /* WFSilPowerStages.png in Resources */,
+				EC0A77251A2E85FE00D4CF10 /* WFSilAntFootpod-30@2x.png in Resources */,
+				EC0A774B1A2E85FE00D4CF10 /* WFSilGenericCadence@2x.png in Resources */,
+				EC0A775E1A2E85FE00D4CF10 /* WFSilGenericSpeed.png in Resources */,
+				EC0A77681A2E85FE00D4CF10 /* WFSilPowerDefault.png in Resources */,
+				EC0A77E31A2EE58800D4CF10 /* iPhonePoweredFitness.png in Resources */,
+				EC0A77811A2E85FE00D4CF10 /* WFSilTICKR-30.png in Resources */,
+				EC0A77B91A2EA43F00D4CF10 /* WFSensorIconMotion.png in Resources */,
+				EC0A77771A2E85FE00D4CF10 /* WFSilPROTKT.png in Resources */,
+				EC0A77291A2E85FE00D4CF10 /* WFSilAntHR-30@2x.png in Resources */,
+				EC0A773A1A2E85FE00D4CF10 /* WFSilBlueSC.png in Resources */,
+				EC0A768D1A2E790F00D4CF10 /* LaunchScreen.xib in Resources */,
+				EC0A777D1A2E85FE00D4CF10 /* WFSilRPM-30.png in Resources */,
+				EC0A77BB1A2EA43F00D4CF10 /* WFSensorIconPowerOff.png in Resources */,
+				EC0A776B1A2E85FE00D4CF10 /* WFSilPowerHub.png in Resources */,
+				EC0A774F1A2E85FE00D4CF10 /* WFSilGenericFootpod@2x.png in Resources */,
+				EC0A776E1A2E85FE00D4CF10 /* WFSilPowerPedal-30@2x.png in Resources */,
+				EC0A77421A2E85FE00D4CF10 /* WFSilEcho.png in Resources */,
+				EC0A773D1A2E85FE00D4CF10 /* WFSilCasioSTB1000-30@2x.png in Resources */,
+				EC0A777E1A2E85FE00D4CF10 /* WFSilRPM-30@2x.png in Resources */,
+				EC0A77491A2E85FE00D4CF10 /* WFSilGenericCadence-30@2x.png in Resources */,
+				EC0A77391A2E85FE00D4CF10 /* WFSilBlueSC-30@2x.png in Resources */,
+				EC0A776D1A2E85FE00D4CF10 /* WFSilPowerPedal-30.png in Resources */,
+				EC0A77621A2E85FE00D4CF10 /* WFSilKICKR.png in Resources */,
+				EC0A773F1A2E85FE00D4CF10 /* WFSilCasioSTB1000@2x.png in Resources */,
+				EC0A77851A2E85FE00D4CF10 /* WFSilTimex-30.png in Resources */,
+				EC0A77551A2E85FE00D4CF10 /* WFSilGenericPower-30@2x.png in Resources */,
+				EC0A77601A2E85FE00D4CF10 /* WFSilKICKR-30.png in Resources */,
+				EC0A76BC1A2E85C500D4CF10 /* WFANT+.logo.png in Resources */,
+				EC0A773B1A2E85FE00D4CF10 /* WFSilBlueSC@2x.png in Resources */,
+				EC0A774D1A2E85FE00D4CF10 /* WFSilGenericFootpod-30@2x.png in Resources */,
+				EC0A77B51A2EA43F00D4CF10 /* WFSensorIconGPSOff.png in Resources */,
+				EC0A77831A2E85FE00D4CF10 /* WFSilTICKR.png in Resources */,
+				EC0A77D31A2ED01400D4CF10 /* Icon-Small.png in Resources */,
+				EC0A77B31A2EA43F00D4CF10 /* WFSensorIconCadenceOff.png in Resources */,
+				EC0A77801A2E85FE00D4CF10 /* WFSilRPM@2x.png in Resources */,
+				EC0A77B81A2EA43F00D4CF10 /* WFSensorIconHROff@2x.png in Resources */,
+				EC0A77301A2E85FE00D4CF10 /* WFSilBalance-30.png in Resources */,
+				EC0A77361A2E85FE00D4CF10 /* WFSilBlueHR.png in Resources */,
+				EC0A77D61A2ED01400D4CF10 /* Icon@2x.png in Resources */,
+				EC0A77D11A2ED01400D4CF10 /* Icon-Small-50.png in Resources */,
+				EC0A77691A2E85FE00D4CF10 /* WFSilPowerHub-30.png in Resources */,
+				EC0A76B81A2E859D00D4CF10 /* WFBtleLogo.png in Resources */,
+				EC0A77BA1A2EA43F00D4CF10 /* WFSensorIconMotion@2x.png in Resources */,
+				EC0A77511A2E85FE00D4CF10 /* WFSilGenericHR-30@2x.png in Resources */,
+				EC0A77841A2E85FE00D4CF10 /* WFSilTICKR@2x.png in Resources */,
+				EC0A77B71A2EA43F00D4CF10 /* WFSensorIconHROff.png in Resources */,
+				EC0A77331A2E85FE00D4CF10 /* WFSilBalance@2x.png in Resources */,
+				EC0A777F1A2E85FE00D4CF10 /* WFSilRPM.png in Resources */,
+				EC0A77241A2E85FE00D4CF10 /* WFSilAntFootpod-30.png in Resources */,
+				EC0A77501A2E85FE00D4CF10 /* WFSilGenericHR-30.png in Resources */,
+				EC0A77381A2E85FE00D4CF10 /* WFSilBlueSC-30.png in Resources */,
+				EC0A77271A2E85FE00D4CF10 /* WFSilAntFootpod@2x.png in Resources */,
+				EC0A776F1A2E85FE00D4CF10 /* WFSilPowerPedal.png in Resources */,
+				EC0A772B1A2E85FE00D4CF10 /* WFSilAntHR@2x.png in Resources */,
+				EC0A77481A2E85FE00D4CF10 /* WFSilGenericCadence-30.png in Resources */,
+				EC0A76B91A2E859D00D4CF10 /* WFBtleLogo@2x.png in Resources */,
+				EC0A77EB1A2FDE0B00D4CF10 /* ReadMe.txt in Resources */,
+				EC0A77541A2E85FE00D4CF10 /* WFSilGenericPower-30.png in Resources */,
+				EC0A772D1A2E85FE00D4CF10 /* WFSilAntSC-30@2x.png in Resources */,
+				EC0A773C1A2E85FE00D4CF10 /* WFSilCasioSTB1000-30.png in Resources */,
+				EC0A77311A2E85FE00D4CF10 /* WFSilBalance-30@2x.png in Resources */,
+				EC0A77E41A2EE58800D4CF10 /* iPhonePoweredFitness@2x.png in Resources */,
+				EC0A77751A2E85FE00D4CF10 /* WFSilPROTKT-30.png in Resources */,
+				EC0A77711A2E85FE00D4CF10 /* WFSilPowerStages-30.png in Resources */,
+				EC0A77321A2E85FE00D4CF10 /* WFSilBalance.png in Resources */,
+				EC0A77591A2E85FE00D4CF10 /* WFSilGenericSensor-30@2x.png in Resources */,
+				EC0A77341A2E85FE00D4CF10 /* WFSilBlueHR-30.png in Resources */,
+				EC0A77571A2E85FE00D4CF10 /* WFSilGenericPower@2x.png in Resources */,
+				EC0A76BD1A2E85C500D4CF10 /* WFANT+.logo@2x.png in Resources */,
+				EC0A774C1A2E85FE00D4CF10 /* WFSilGenericFootpod-30.png in Resources */,
+				EC0A77781A2E85FE00D4CF10 /* WFSilPROTKT@2x.png in Resources */,
+				EC0A77791A2E85FE00D4CF10 /* WFSilRFLKT-30.png in Resources */,
+				EC0A77451A2E85FE00D4CF10 /* WFSilFisicaKey-30@2x.png in Resources */,
+				EC0A77281A2E85FE00D4CF10 /* WFSilAntHR-30.png in Resources */,
+				EC0A77471A2E85FE00D4CF10 /* WFSilFisicaKey@2x.png in Resources */,
+				EC0A777C1A2E85FE00D4CF10 /* WFSilRFLKT@2x.png in Resources */,
+				EC0A77BD1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff.png in Resources */,
+				EC0A77641A2E85FE00D4CF10 /* WFSilPowerCrankset-30.png in Resources */,
+				EC0A776A1A2E85FE00D4CF10 /* WFSilPowerHub-30@2x.png in Resources */,
+				EC0A77461A2E85FE00D4CF10 /* WFSilFisicaKey.png in Resources */,
+				EC0A775B1A2E85FE00D4CF10 /* WFSilGenericSensor@2x.png in Resources */,
+				EC0A77D81A2ED01400D4CF10 /* iTunesArtwork@2x.png in Resources */,
+				EC0A77D71A2ED01400D4CF10 /* iTunesArtwork.png in Resources */,
+				EC0A775A1A2E85FE00D4CF10 /* WFSilGenericSensor.png in Resources */,
+				EC0A77631A2E85FE00D4CF10 /* WFSilKICKR@2x.png in Resources */,
+				EC0A77D51A2ED01400D4CF10 /* Icon.png in Resources */,
+				EC0A77261A2E85FE00D4CF10 /* WFSilAntFootpod.png in Resources */,
+				EC0A77B21A2EA43F00D4CF10 /* WFSensorIconAltimeter@2x.png in Resources */,
+				EC0A77821A2E85FE00D4CF10 /* WFSilTICKR-30@2x.png in Resources */,
+				EC0A77871A2E85FE00D4CF10 /* WFSilTimex.png in Resources */,
+				EC0A77861A2E85FE00D4CF10 /* WFSilTimex-30@2x.png in Resources */,
+				EC0A774E1A2E85FE00D4CF10 /* WFSilGenericFootpod.png in Resources */,
+				EC0A77BE1A2EA43F00D4CF10 /* WFSensorIconRFLKTOff@2x.png in Resources */,
+				EC0A777A1A2E85FE00D4CF10 /* WFSilRFLKT-30@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC0A76901A2E790F00D4CF10 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC0A76751A2E790F00D4CF10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC0A76A61A2E7A2700D4CF10 /* DiscoveryTVC.m in Sources */,
+				EC0A778B1A2E863600D4CF10 /* WFSignalStrengthView.m in Sources */,
+				EC0A76B41A2E7B6400D4CF10 /* SensorCell.m in Sources */,
+				EC0A76851A2E790F00D4CF10 /* MenuTVC.m in Sources */,
+				EC0A76821A2E790F00D4CF10 /* AppDelegate.m in Sources */,
+				EC0A77971A2E8EC200D4CF10 /* ImageHelper.m in Sources */,
+				EC0A77E01A2EDB7900D4CF10 /* SensorTVC.m in Sources */,
+				EC0A77DD1A2ED91A00D4CF10 /* SensorConnectionHelper.m in Sources */,
+				EC0A779A1A2E8ECD00D4CF10 /* UIColor+WFHelpers.m in Sources */,
+				EC0A767F1A2E790F00D4CF10 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC0A768E1A2E790F00D4CF10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC0A76991A2E790F00D4CF10 /* WahooDemoV2Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC0A76941A2E790F00D4CF10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC0A76781A2E790F00D4CF10 /* WahooDemoV2 */;
+			targetProxy = EC0A76931A2E790F00D4CF10 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC0A76861A2E790F00D4CF10 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC0A76871A2E790F00D4CF10 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC0A768B1A2E790F00D4CF10 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC0A768C1A2E790F00D4CF10 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC0A769A1A2E790F00D4CF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-all_load";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EC0A769B1A2E790F00D4CF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-all_load";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC0A769D1A2E790F00D4CF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies\"",
+				);
+				INFOPLIST_FILE = WahooDemoV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC0A769E1A2E790F00D4CF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../dependencies\"",
+				);
+				INFOPLIST_FILE = WahooDemoV2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EC0A76A01A2E790F00D4CF10 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WahooDemoV2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WahooDemoV2.app/WahooDemoV2";
+			};
+			name = Debug;
+		};
+		EC0A76A11A2E790F00D4CF10 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LIBRARY = "libstdc++";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = WahooDemoV2Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WahooDemoV2.app/WahooDemoV2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC0A76741A2E790F00D4CF10 /* Build configuration list for PBXProject "WahooDemoV2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0A769A1A2E790F00D4CF10 /* Debug */,
+				EC0A769B1A2E790F00D4CF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC0A769C1A2E790F00D4CF10 /* Build configuration list for PBXNativeTarget "WahooDemoV2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0A769D1A2E790F00D4CF10 /* Debug */,
+				EC0A769E1A2E790F00D4CF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC0A769F1A2E790F00D4CF10 /* Build configuration list for PBXNativeTarget "WahooDemoV2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0A76A01A2E790F00D4CF10 /* Debug */,
+				EC0A76A11A2E790F00D4CF10 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC0A76711A2E790F00D4CF10 /* Project object */;
+}
